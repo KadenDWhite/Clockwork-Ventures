@@ -42,3 +42,42 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: BG2
+    uniqueID: 1260806741
+    locked: 0
+  - name: BG3
+    uniqueID: 2704968909
+    locked: 0
+  - name: BG1
+    uniqueID: 1165496339
+    locked: 0
+  - name: BG9
+    uniqueID: 1010234317
+    locked: 0
+  - name: BG6
+    uniqueID: 1553797831
+    locked: 0
+  - name: BG8
+    uniqueID: 750856159
+    locked: 0
+  - name: BG7
+    uniqueID: 3658529323
+    locked: 0
+  - name: BG5
+    uniqueID: 3357799929
+    locked: 0
+  - name: BG10
+    uniqueID: 2347738579
+    locked: 0
+  - name: BG11
+    uniqueID: 4293185903
+    locked: 0
+  - name: BG4
+    uniqueID: 2584289767
+    locked: 0
+  - name: Player
+    uniqueID: 3441822855
+    locked: 0
+  - name: BG12
+    uniqueID: 3245918439
+    locked: 0
