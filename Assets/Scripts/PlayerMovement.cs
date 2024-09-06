@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
 
     public float speed;
     public float jump;
+    public float run;
     public Vector2 boxSize;
     public float castDistance;
     public LayerMask groundLayer;
@@ -26,11 +27,16 @@ public class PlayerMovement : MonoBehaviour
     {
         Move = Input.GetAxisRaw("Horizontal");
 
-        rb.velocity = new Vector2(Move * speed, rb.velocity.y);
+        //rb.velocity = new Vector2(Move * speed, rb.velocity.y);
 
         if (Input.GetButtonDown("Jump") && isGrounded()) 
         {
             rb.AddForce(new Vector2(rb.velocity.x, jump * 10));
+        }
+
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+           rb.velocity = new Vector2(Move * speed, rb.velocity.y);
         }
     }
 
@@ -51,25 +57,4 @@ public class PlayerMovement : MonoBehaviour
     {
         Gizmos.DrawWireCube(transform.position-transform.up * castDistance, boxSize);
     }
-
- //   private void OnCollisionEnter2D(Collision2D other) 
- //   {
- //       if (other.gameObject.CompareTag("Ground"))
- //       {
- //           Vector3 normal = other.GetContact(0).normal;
- //           if(normal == Vector3.up)
- //           {
- //               grounded = true;
- //           }
-            
- //       }
- //   }
-
- //   private void OnCollisionExit2D(Collision2D other)
-	//{
-	//	if (other.gameObject.CompareTag("Ground"))
-	//	{
-	//		grounded = false;
-	//	}
-	//}
 }
