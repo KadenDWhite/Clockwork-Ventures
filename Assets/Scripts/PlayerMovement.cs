@@ -5,12 +5,15 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody2D rb;
+    Animator animator;
 
     private float Move;
+    bool isFacingRight = false;
 
-    public float speed;
-    public float jump;
-    public float run;
+    public float speed; // Regular speed movement
+	public float jump;
+    public float runSpeed; // Speed when holding Shift
+
     public Vector2 boxSize;
     public float castDistance;
     public LayerMask groundLayer;
@@ -20,26 +23,57 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        Move = Input.GetAxisRaw("Horizontal");
+		{
+			float move = Input.GetAxisRaw("Horizontal");
 
-        //rb.velocity = new Vector2(Move * speed, rb.velocity.y);
+            // Default to normal speed
+            float currentSpeed = speed;
 
-        if (Input.GetButtonDown("Jump") && isGrounded()) 
-        {
-            rb.AddForce(new Vector2(rb.velocity.x, jump * 10));
-        }
+            FlipSprite();
 
-        if (Input.GetKey(KeyCode.LeftShift))
-        {
-           rb.velocity = new Vector2(Move * speed, rb.velocity.y);
+            // Check if the Shift key is held down
+            if (Input.GetKey(KeyCode.LeftShift))
+			{
+				currentSpeed = runSpeed;
+            }
+
+
+            if (Input.GetButtonDown("Jump") && isGrounded())
+            {
+                rb.AddForce(new Vector2(rb.velocity.x, jump * 10));
+                animator.SetBool("isJumping", !isGrounded);
+            }
+            else
+            {
+				animator.SetBool("isJumping", isGrounded);
+			}
         }
     }
 
+    private void FixedUpdate()
+    {
+		// Apply the movement with the current speed
+		rb.velocity = new Vector2(move * currentSpeed, rb.velocity.y);
+        animator.SetFloat("xVelocity", Math.Abs(rb.velocity.x));
+		animator.SetFloat("yVelocity", rb.velocity.y);
+	}
+
+    void FlipSprite()
+    {
+        if (isFacingRight && Move < 0f || !isFacingRight && Move > 0f)
+        {
+            isFacingRight = !isFacingRight;
+            Vector3 ls = transform.localScale;
+            ls.x *= -1f;
+            transform.localScale = ls;
+        }
+    }
 
     public bool isGrounded()
     {
@@ -50,11 +84,11 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             return false;
-        }
+		}
     }
 
     private void OnDrawGizmos()
     {
-        Gizmos.DrawWireCube(transform.position-transform.up * castDistance, boxSize);
-    }
+        Gizmos.DrawWireCube(transform.position - transform.up * castDistance, boxSize);
+	}
 }
