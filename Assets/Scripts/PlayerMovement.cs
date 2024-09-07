@@ -1,94 +1,101 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private Rigidbody2D rb;
-    Animator animator;
+	private Rigidbody2D rb;
+	private Animator animator;
+	private SpriteRenderer spriteRenderer;
 
-    private float Move;
-    bool isFacingRight = false;
+	private float move;
+	private bool isFacingRight = true; // Assuming the character starts facing right
 
-    public float speed; // Regular speed movement
+	public float speed; // Regular speed movement
 	public float jump;
-    public float runSpeed; // Speed when holding Shift
+	public float runSpeed; // Speed when holding Shift
 
-    public Vector2 boxSize;
-    public float castDistance;
-    public LayerMask groundLayer;
+	public Vector2 boxSize;
+	public float castDistance;
+	public LayerMask groundLayer;
 
-    bool grounded;
-    // Start is called before the first frame update
-    void Start()
-    {
-        rb = GetComponent<Rigidbody2D>();
-        animator = GetComponent<animator>();
-    }
+	private float currentSpeed;
 
-    // Update is called once per frame
-    void Update()
-    {
+	void Start()
+	{
+		rb = GetComponent<Rigidbody2D>();
+		animator = GetComponent<Animator>();
+		spriteRenderer = GetComponent<SpriteRenderer>(); // Initializes SpriteRenderer
+	}
+
+	void Update()
+	{
+		// Gets horizontal input
+		move = Input.GetAxis("Horizontal");
+
+		// Determines current speed
+		if (Input.GetKey(KeyCode.LeftShift))
 		{
-			float move = Input.GetAxisRaw("Horizontal");
+			currentSpeed = runSpeed;
+		}
+		else
+		{
+			currentSpeed = speed;
+		}
 
-            // Default to normal speed
-            float currentSpeed = speed;
+		// Sets animator parameters
+		animator.SetFloat("xVelocity", Mathf.Abs(move) * currentSpeed);
+		animator.SetFloat("yVelocity", rb.velocity.y);
 
-            FlipSprite();
+		// Handles jumping
+		if (Input.GetButtonDown("Jump") && IsGrounded())
+		{
+			rb.AddForce(new Vector2(rb.velocity.x, jump * 10));
+			animator.SetBool("isJumping", true);
+		}
+		else
+		{
+			// Updates jumping status
+			animator.SetBool("isJumping", !IsGrounded());
+		}
 
-            // Check if the Shift key is held down
-            if (Input.GetKey(KeyCode.LeftShift))
-			{
-				currentSpeed = runSpeed;
-            }
+		// Flipping the sprite based on movement direction
+		FlipSprite();
 
-
-            if (Input.GetButtonDown("Jump") && isGrounded())
-            {
-                rb.AddForce(new Vector2(rb.velocity.x, jump * 10));
-                animator.SetBool("isJumping", !isGrounded);
-            }
-            else
-            {
-				animator.SetBool("isJumping", isGrounded);
-			}
-        }
-    }
-
-    private void FixedUpdate()
-    {
-		// Apply the movement with the current speed
+		// Applying movement
 		rb.velocity = new Vector2(move * currentSpeed, rb.velocity.y);
-        animator.SetFloat("xVelocity", Math.Abs(rb.velocity.x));
+	}
+
+	private bool IsGrounded()
+	{
+		// Checking if the player is grounded
+		return Physics2D.BoxCast(transform.position, boxSize, 0, Vector2.down, castDistance, groundLayer);
+	}
+
+	private void FlipSprite()
+	{
+		if (move > 0 && !isFacingRight || move < 0 && isFacingRight)
+		{
+			Flip(); // Called as a helper method to flip the sprite
+		}
+	}
+
+	private void Flip()
+	{
+		isFacingRight = !isFacingRight;
+		Vector3 ls = transform.localScale;
+		ls.x *= -1f; // Flips the sprite by inverting the x scale
+		transform.localScale = ls;
+	}
+
+	private void FixedUpdate()
+	{
+		// Applies the movement with the current speed
+		rb.velocity = new Vector2(move * currentSpeed, rb.velocity.y);
+		animator.SetFloat("xVelocity", Mathf.Abs(rb.velocity.x));
 		animator.SetFloat("yVelocity", rb.velocity.y);
 	}
 
-    void FlipSprite()
-    {
-        if (isFacingRight && Move < 0f || !isFacingRight && Move > 0f)
-        {
-            isFacingRight = !isFacingRight;
-            Vector3 ls = transform.localScale;
-            ls.x *= -1f;
-            transform.localScale = ls;
-        }
-    }
-
-    public bool isGrounded()
-    {
-        if(Physics2D.BoxCast(transform.position, boxSize, 0, -transform.up, castDistance, groundLayer))
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-		}
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawWireCube(transform.position - transform.up * castDistance, boxSize);
+	private void OnDrawGizmos()
+	{
+		Gizmos.DrawWireCube(transform.position - transform.up * castDistance, boxSize);
 	}
 }
