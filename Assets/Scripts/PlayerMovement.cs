@@ -6,7 +6,8 @@ public class PlayerMovement : MonoBehaviour
 {
 	private Rigidbody2D rb;
 	private Animator animator;
-	private SpriteRenderer spriteRenderer;
+    private WeaponManager weaponManager;
+    private SpriteRenderer spriteRenderer;
 
 	private float move;
 	private bool isFacingRight = true; // Assuming the character starts facing right
@@ -26,7 +27,8 @@ public class PlayerMovement : MonoBehaviour
 		rb = GetComponent<Rigidbody2D>();
 		animator = GetComponent<Animator>();
 		spriteRenderer = GetComponent<SpriteRenderer>(); // Initializes SpriteRenderer
-	}
+        weaponManager = GetComponent<WeaponManager>(); // Reference to WeaponManager
+    }
 
 	void Update()
 	{
@@ -43,12 +45,14 @@ public class PlayerMovement : MonoBehaviour
 			currentSpeed = speed;
 		}
 
-		// Sets animator parameters
-		animator.SetFloat("xVelocity", Mathf.Abs(move) * currentSpeed);
-		animator.SetFloat("yVelocity", rb.velocity.y);
-
-		// Handles jumping
-		if (Input.GetButtonDown("Jump") && IsGrounded())
+        // Regular movement animations (idle, run)
+        if (!weaponManager.isDrawn)
+        {
+            animator.SetFloat("xVelocity", Mathf.Abs(move) * currentSpeed);
+            animator.SetFloat("yVelocity", rb.velocity.y);
+        }
+        // Handles jumping
+        if (Input.GetButtonDown("Jump") && IsGrounded())
 		{
 			rb.AddForce(new Vector2(rb.velocity.x, jump * 10));
 			animator.SetBool("isJumping", true);
@@ -59,12 +63,12 @@ public class PlayerMovement : MonoBehaviour
 			animator.SetBool("isJumping", !IsGrounded());
 		}
 
-		// Flipping the sprite based on movement direction
-		FlipSprite();
+        // Flipping the sprite based on movement direction
+        FlipSprite();
 
 		// Applying movement
 		rb.velocity = new Vector2(move * currentSpeed, rb.velocity.y);
-	}
+    }
 
 	private bool IsGrounded()
 	{

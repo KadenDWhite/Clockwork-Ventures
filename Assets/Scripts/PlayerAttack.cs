@@ -4,15 +4,34 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-    // Start is called before the first frame update
+    private Animator animator;
+    private WeaponManager weaponManager; //Reference to WeaponManager
+
+    
     void Start()
     {
-        
+        animator = GetComponent<Animator>();
+        weaponManager = GetComponent<WeaponManager>(); // Assuming WeaponManager is on the same GameObject
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
-        
+        if (weaponManager.IsWeaponDrawn())
+        {
+            Attack();
+        }
+    }
+
+    void Attack()
+    {
+        if (Input.GetButtonDown("Fire1"))
+        {
+            animator.SetBool("isAttacking", true);
+        }
+        if (Input.GetButtonUp("Fire1"))
+        {
+            animator.SetBool("isAttacking", false);
+        }
     }
 }
