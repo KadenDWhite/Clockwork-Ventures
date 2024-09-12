@@ -5,18 +5,19 @@ using UnityEngine;
 public class PlayerAttack : MonoBehaviour
 {
     private WeaponManager weaponManager;
+    private Animator animator;
 
     void Start()
     {
         weaponManager = GetComponent<WeaponManager>();
+        animator = GetComponent<Animator>();
     }
 
-    public bool IsAttacking()
+    void Update()
     {
         if (weaponManager.IsWeaponDrawn() && Input.GetMouseButtonDown(0))
         {
-            return true;
+            animator.SetTrigger("Attack");
         }
-        return false;
     }
 }

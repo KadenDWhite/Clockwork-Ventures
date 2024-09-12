@@ -6,13 +6,10 @@ public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody2D rb;
     private Animator animator;
-    private SpriteRenderer spriteRenderer;
 
-    public List<AnimationClip> movementAnimations; // Idle and Run animations
-    public List<AnimationClip> attackAnimations;   // Attack, Draw, Sheathe animations
-    public float speed;
-    public float runSpeed;
+    public float speed; // Regular speed movement
     public float jump;
+    public float runSpeed; // Speed when holding Shift
 
     public Vector2 boxSize;
     public float castDistance;
@@ -20,29 +17,19 @@ public class PlayerMovement : MonoBehaviour
 
     private float currentSpeed;
     private bool isRunning;
-    private bool isAttacking;
-    private bool isWeaponDrawn;
-    private bool isFacingRight = true;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        spriteRenderer = GetComponent<SpriteRenderer>(); // Initialize SpriteRenderer
+        rb = GetComponent<Rigidbody2D>();
     }
 
     void Update()
     {
-        HandleMovement();
-        HandleWeaponState();
-        HandleAttack();
-        FlipSprite(); // Call to flip the sprite based on movement direction
-    }
-
-    void HandleMovement()
-    {
         float move = Input.GetAxis("Horizontal");
 
+        // Run logic
         if (Input.GetKey(KeyCode.LeftShift))
         {
             currentSpeed = runSpeed;
@@ -56,78 +43,22 @@ public class PlayerMovement : MonoBehaviour
 
         rb.velocity = new Vector2(move * currentSpeed, rb.velocity.y);
 
-        // Switch animations based on state
-        if (isAttacking)
+        // Animator parameters
+        animator.SetFloat("xVelocity", Mathf.Abs(move) * currentSpeed);
+        animator.SetFloat("yVelocity", rb.velocity.y);
+
+        if (Input.GetButtonDown("Jump") && IsGrounded())
         {
-            PlayAnimation("Attack");
-        }
-        else if (isRunning)
-        {
-            PlayAnimation("Run");
+            rb.AddForce(new Vector2(rb.velocity.x, jump * 10));
+            animator.SetBool("isJumping", true);
         }
         else
         {
-            PlayAnimation("Idle");
-        }
-    }
-
-    void HandleWeaponState()
-    {
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            isWeaponDrawn = !isWeaponDrawn;
-            if (isWeaponDrawn)
-            {
-                PlayAnimation("Draw");
-            }
-            else
-            {
-                PlayAnimation("Sheathe");
-            }
-        }
-    }
-
-    void HandleAttack()
-    {
-        if (Input.GetMouseButtonDown(0) && isWeaponDrawn)
-        {
-            isAttacking = true;
-            PlayAnimation("Attack");
-        }
-        else
-        {
-            isAttacking = false;
-        }
-    }
-
-    public void PlayAnimation(string animationName)
-    {
-        if (animator == null)
-        {
-            Debug.LogError("Animator component not found!");
-            return;
+            animator.SetBool("isJumping", !IsGrounded());
         }
 
-        // Check and play animation based on the name
-        foreach (var clip in movementAnimations)
-        {
-            if (clip.name == animationName)
-            {
-                animator.Play(animationName);
-                return;
-            }
-        }
-
-        foreach (var clip in attackAnimations)
-        {
-            if (clip.name == animationName)
-            {
-                animator.Play(animationName);
-                return;
-            }
-        }
-
-        Debug.LogWarning("Animation not found: " + animationName);
+        // Handle flipping
+        FlipSprite(move);
     }
 
     private bool IsGrounded()
@@ -135,28 +66,14 @@ public class PlayerMovement : MonoBehaviour
         return Physics2D.BoxCast(transform.position, boxSize, 0, Vector2.down, castDistance, groundLayer);
     }
 
-    private void FlipSprite()
+    private void FlipSprite(float move)
     {
-        float move = Input.GetAxis("Horizontal");
-
+        bool isFacingRight = transform.localScale.x > 0;
         if (move > 0 && !isFacingRight || move < 0 && isFacingRight)
         {
-            isFacingRight = !isFacingRight;
-            Vector3 ls = transform.localScale;
-            ls.x *= -1f; // Flips the sprite by inverting the x scale
-            transform.localScale = ls;
+            Vector3 localScale = transform.localScale;
+            localScale.x *= -1;
+            transform.localScale = localScale;
         }
-    }
-
-    private void FixedUpdate()
-    {
-        rb.velocity = new Vector2(Input.GetAxis("Horizontal") * currentSpeed, rb.velocity.y);
-        animator.SetFloat("xVelocity", Mathf.Abs(rb.velocity.x));
-        animator.SetFloat("yVelocity", rb.velocity.y);
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawWireCube(transform.position - transform.up * castDistance, boxSize);
     }
 }

@@ -23,14 +23,7 @@ public class WeaponManager : MonoBehaviour
     public void ToggleWeaponState()
     {
         isDrawn = !isDrawn;
-        if (isDrawn)
-        {
-            playerMovement.PlayAnimation("Draw"); // Call from PlayerMovement
-        }
-        else
-        {
-            playerMovement.PlayAnimation("Sheathe"); // Call from PlayerMovement
-        }
+        playerMovement.SetWeaponState(isDrawn); // Update player movement animator
     }
 
     public bool IsWeaponDrawn()
