@@ -2761,9 +2761,9 @@ GameObject:
   - component: {fileID: 1271117659}
   - component: {fileID: 1271117663}
   - component: {fileID: 1271117662}
+  - component: {fileID: 1271117666}
   - component: {fileID: 1271117665}
   - component: {fileID: 1271117664}
-  - component: {fileID: 1271117666}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -2877,9 +2877,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edaaf076274299645a338cf3e4f6aa89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movementAnimations:
+  - {fileID: 7400000, guid: c6775acfacc8fda49a82eef7e4ec2159, type: 2}
+  - {fileID: 7400000, guid: c05db77a50e1db0419a311c2ef5fb870, type: 2}
+  attackAnimations:
+  - {fileID: 7400000, guid: 57ab9ca68c5f386459f1a812fc0e433e, type: 2}
+  - {fileID: 7400000, guid: c4ddd6bbde004e0429efb6886e689d77, type: 2}
+  - {fileID: 7400000, guid: fdba78ff710712f4dba7c9b57853becb, type: 2}
+  - {fileID: 7400000, guid: 2ae83ba343de39b40968de45b450f116, type: 2}
+  - {fileID: 7400000, guid: bbb5f8e338652434698bc9809a5755b4, type: 2}
   speed: 5
-  jump: 20
   runSpeed: 10
+  jump: 20
   boxSize: {x: 2.49, y: 0.65}
   castDistance: 3.53
   groundLayer:
@@ -2972,7 +2981,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1271117658}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a7151266445d100438f88ea4e5400897, type: 3}
+  m_Script: {fileID: 11500000, guid: 2ea568cd6ce987f488f5a2a52003e380, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isDrawn: 0
@@ -3720,7 +3729,7 @@ Transform:
   m_GameObject: {fileID: 1676545997}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -24.799976, y: -18.784351, z: -10}
+  m_LocalPosition: {x: -24.799973, y: -18.784256, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
