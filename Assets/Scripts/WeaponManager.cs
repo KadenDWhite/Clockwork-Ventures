@@ -1,21 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
 using UnityEngine;
 
 public class WeaponManager : MonoBehaviour
 {
-    public bool isDrawn = false; //Whether the sword is drawn or not
+    public bool isDrawn = false; // Whether the sword is drawn or not
+    public bool isSheathed = true; // Whether the sword is sheathed or not
     private Animator animator;
 
     void Start()
     {
-        animator = GetComponent<Animator>();   
+        animator = GetComponent<Animator>();
     }
 
     void Update()
     {
-        //Toggling between sheathe and draw with the Q key
+        // Toggle between sheathe and draw with the Q key
         if (Input.GetKeyDown(KeyCode.Q))
         {
             ToggleWeaponState();
@@ -24,17 +22,19 @@ public class WeaponManager : MonoBehaviour
 
     public void ToggleWeaponState()
     {
-        isDrawn = !isDrawn; // Toggle weapon state
-
         if (isDrawn)
         {
-            animator.SetBool("isDrawn", true);
-            animator.SetBool("isSheathed", false);
+            // If drawn, sheath it
+            animator.SetTrigger("Sheathe");
+            isDrawn = false;
+            isSheathed = true;
         }
         else
         {
-            animator.SetBool("isDrawn", false);
-            animator.SetBool("isSheathed", true);
+            // If sheathed, draw it
+            animator.SetTrigger("Draw");
+            isDrawn = true;
+            isSheathed = false;
         }
     }
 

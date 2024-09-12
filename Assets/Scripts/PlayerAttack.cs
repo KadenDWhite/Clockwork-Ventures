@@ -5,33 +5,34 @@ using UnityEngine;
 public class PlayerAttack : MonoBehaviour
 {
     private Animator animator;
-    private WeaponManager weaponManager; //Reference to WeaponManager
+    private bool isAttacking;
 
-    
     void Start()
     {
         animator = GetComponent<Animator>();
-        weaponManager = GetComponent<WeaponManager>(); // Assuming WeaponManager is on the same GameObject
     }
 
-    
     void Update()
     {
-        if (weaponManager.IsWeaponDrawn())
+        // Handle attack input
+        if (Input.GetButtonDown("Fire1")) // Replace with your attack button
         {
-            Attack();
+            if (!isAttacking)
+            {
+                StartAttack();
+            }
         }
     }
 
-    void Attack()
+    void StartAttack()
     {
-        if (Input.GetButtonDown("Fire1"))
-        {
-            animator.SetBool("isAttacking", true);
-        }
-        if (Input.GetButtonUp("Fire1"))
-        {
-            animator.SetBool("isAttacking", false);
-        }
+        isAttacking = true;
+        animator.SetTrigger("Attack"); // Use a trigger for attack animation
+    }
+
+    // This function should be called from an animation event or elsewhere to reset attacking state
+    public void EndAttack()
+    {
+        isAttacking = false;
     }
 }
