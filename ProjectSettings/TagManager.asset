@@ -75,6 +75,12 @@ TagManager:
   - name: BG4
     uniqueID: 2584289767
     locked: 0
+  - name: Leaves
+    uniqueID: 3775399915
+    locked: 0
+  - name: TutorialNPC
+    uniqueID: 3036499513
+    locked: 0
   - name: Player
     uniqueID: 3441822855
     locked: 0
