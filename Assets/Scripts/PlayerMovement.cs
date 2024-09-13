@@ -6,8 +6,12 @@ public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody2D rb;
     private Animator animator;
+    private SpriteRenderer spriteRenderer;
 
-    public float speed; // Regular speed movement
+    private float move;
+    private bool isFacingRight = true;
+
+    public float speed; // Walking speed
     public float jump;
     public float runSpeed; // Speed when holding Shift
 
@@ -16,64 +20,110 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask groundLayer;
 
     private float currentSpeed;
-    private bool isRunning;
+    private bool isJumping; // Tracks if the player is currently jumping
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        rb = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>(); // Initializes SpriteRenderer
     }
 
     void Update()
     {
-        float move = Input.GetAxis("Horizontal");
+        // Gets horizontal input
+        move = Input.GetAxis("Horizontal");
 
-        // Run logic
+        // Determines current speed (running or walking)
         if (Input.GetKey(KeyCode.LeftShift))
         {
-            currentSpeed = runSpeed;
-            isRunning = true;
+            currentSpeed = runSpeed; // Increase speed when Shift is held
         }
         else
         {
-            currentSpeed = speed;
-            isRunning = false;
+            currentSpeed = speed; // Use normal speed when walking
         }
 
-        rb.velocity = new Vector2(move * currentSpeed, rb.velocity.y);
+        // Set the "isRunning" parameter based on any movement input
+        if (Mathf.Abs(move) > 0)
+        {
+            animator.SetBool("isRunning", true); // Play running animation when moving
+        }
+        else
+        {
+            animator.SetBool("isRunning", false); // Switch to idle animation when not moving
+        }
 
-        // Animator parameters
+        // Set velocity parameters for smooth transitions
         animator.SetFloat("xVelocity", Mathf.Abs(move) * currentSpeed);
         animator.SetFloat("yVelocity", rb.velocity.y);
 
-        if (Input.GetButtonDown("Jump") && IsGrounded())
+        // Handle jumping
+        HandleJumping();
+
+        // Flipping the sprite based on movement direction
+        FlipSprite();
+
+        // Applying movement
+        rb.velocity = new Vector2(move * currentSpeed, rb.velocity.y);
+    }
+
+    private void HandleJumping()
+    {
+        // Check if the player is grounded
+        bool isGrounded = IsGrounded();
+
+        if (isGrounded && !isJumping)
         {
-            rb.AddForce(new Vector2(rb.velocity.x, jump * 10));
-            animator.SetBool("isJumping", true);
-        }
-        else
-        {
-            animator.SetBool("isJumping", !IsGrounded());
+            animator.SetBool("isJumping", false); // Stop jump animation when grounded
         }
 
-        // Handle flipping
-        FlipSprite(move);
+        if (Input.GetButtonDown("Jump") && isGrounded)
+        {
+            rb.AddForce(new Vector2(rb.velocity.x, jump * 10));
+            isJumping = true; // Start the jump
+            animator.SetBool("isJumping", true); // Trigger jump animation
+        }
+
+        // Update the jump state once player is in the air
+        if (isJumping && rb.velocity.y <= 0)
+        {
+            isJumping = false; // Player is falling down, so stop jumping
+        }
     }
 
     private bool IsGrounded()
     {
+        // Checking if the player is grounded
         return Physics2D.BoxCast(transform.position, boxSize, 0, Vector2.down, castDistance, groundLayer);
     }
 
-    private void FlipSprite(float move)
+    private void FlipSprite()
     {
-        bool isFacingRight = transform.localScale.x > 0;
         if (move > 0 && !isFacingRight || move < 0 && isFacingRight)
         {
-            Vector3 localScale = transform.localScale;
-            localScale.x *= -1;
-            transform.localScale = localScale;
+            Flip();
         }
+    }
+
+    private void Flip()
+    {
+        isFacingRight = !isFacingRight;
+        Vector3 ls = transform.localScale;
+        ls.x *= -1f; // Flips the sprite by inverting the x scale
+        transform.localScale = ls;
+    }
+
+    private void FixedUpdate()
+    {
+        // Applies the movement with the current speed
+        rb.velocity = new Vector2(move * currentSpeed, rb.velocity.y);
+        animator.SetFloat("xVelocity", Mathf.Abs(rb.velocity.x));
+        animator.SetFloat("yVelocity", rb.velocity.y);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireCube(transform.position - transform.up * castDistance, boxSize);
     }
 }
