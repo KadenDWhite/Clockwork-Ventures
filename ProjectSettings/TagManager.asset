@@ -13,9 +13,9 @@ TagManager:
   - Water
   - UI
   - Ground
-  - 
-  - 
-  - 
+  - Player
+  - Enemies
+  - Test
   - 
   - 
   - 
@@ -80,6 +80,9 @@ TagManager:
     locked: 0
   - name: TutorialNPC
     uniqueID: 3036499513
+    locked: 0
+  - name: Goblin
+    uniqueID: 685440995
     locked: 0
   - name: Player
     uniqueID: 3441822855

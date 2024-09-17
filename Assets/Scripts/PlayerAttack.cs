@@ -7,6 +7,16 @@ public class PlayerAttack : MonoBehaviour
     private WeaponManager weaponManager;
     private Animator animator;
 
+    public Transform attackPoint;
+    public LayerMask enemyLayers;
+
+    
+    public float attackRange = 0.5f;
+    public int attackDMG = 20;
+
+    public float attackRate = 2f;
+    float nextAttackTime = 0f;
+
     void Start()
     {
         weaponManager = GetComponent<WeaponManager>();
@@ -15,9 +25,34 @@ public class PlayerAttack : MonoBehaviour
 
     void Update()
     {
-        if (weaponManager.IsWeaponDrawn() && Input.GetMouseButtonDown(0))
+        if (Time.time >= nextAttackTime)
         {
+            if (weaponManager.IsWeaponDrawn() && Input.GetMouseButtonDown(0))
+            {
+                Attack();
+                nextAttackTime = Time.time + 1f / attackRate;
+            }
+        } 
+    }
+    void Attack()
+    {
+            //Play an attack animation
             animator.SetTrigger("Attack");
-        }
+
+            //Detect enemies in range of attack
+            Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+
+            //Damage to enemies
+            foreach (Collider2D enemy in hitEnemies)
+            {
+                enemy.GetComponent<Enemy>().TakeDMG(attackDMG);
+            }  
+    }
+    void OnDrawGizmosSelected()
+    {
+        if (attackPoint == null)
+            return;
+        
+        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
 }
