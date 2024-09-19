@@ -34,7 +34,7 @@ public class PlayerAttack : MonoBehaviour
             }
         } 
     }
-    void Attack()
+    public void Attack()
     {
             //Play an attack animation
             animator.SetTrigger("Attack");
@@ -45,7 +45,7 @@ public class PlayerAttack : MonoBehaviour
             //Damage to enemies
             foreach (Collider2D enemy in hitEnemies)
             {
-                enemy.GetComponent<Enemy>().TakeDMG(attackDMG);
+                enemy.GetComponent<EnemyHP>().TakeDMG(attackDMG);
             }  
     }
     void OnDrawGizmosSelected()

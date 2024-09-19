@@ -7,7 +7,7 @@ public class PlayerHP : MonoBehaviour
     public Animator animator;
 
     public int maxHP = 100;
-    int currentHP;
+    public int currentHP;
 
     void Start()
     {

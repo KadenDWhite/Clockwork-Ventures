@@ -5,73 +5,94 @@ using UnityEngine;
 public class EnemyAI : MonoBehaviour
 {
     public GameObject player;
-    public float speed;
-    public float distanceBetween;
-    public Animator animator;
-    public SpriteRenderer spriteRenderer; // Add reference to SpriteRenderer
+    public float speed = 2f;
+    public float chaseDistanceThreshold = 3f;
+    public float attackDistanceThreshold = 0.8f;
+    public float attackDelay = 1f;
 
-    private float distance;
-    private bool isFacingRight = false; // Track which direction the enemy is facing
+    private float attackTimer;
+    private Animator animator;
+    private bool isFacingRight = false;
+    private PlayerHP playerHP;
 
-    void Start()
+    private void Start()
     {
-        if (spriteRenderer == null)
-        {
-            spriteRenderer = GetComponent<SpriteRenderer>(); // Ensure SpriteRenderer is assigned
-        }
+        animator = GetComponent<Animator>();
+        attackTimer = attackDelay;
+        playerHP = player.GetComponent<PlayerHP>();
     }
 
-    void Update()
+    private void Update()
     {
-        // Calculate the distance between the enemy and the player
-        distance = Vector2.Distance(transform.position, player.transform.position);
-
-        // Calculate the direction towards the player and normalize it
-        Vector2 direction = player.transform.position - transform.position;
-        direction.Normalize();
-
-        // If the player is within the specified distance, the enemy moves towards the player
-        if (distance < distanceBetween)
+        if (player == null || playerHP.currentHP <= 0)
         {
-            // Move the enemy towards the player
-            transform.position = Vector2.MoveTowards(this.transform.position, player.transform.position, speed * Time.deltaTime);
+            StopMovement();
+            return;
+        }
 
-            // Set the "isRunning" parameter to true to trigger the run animation
-            animator.SetBool("isRunning", true);
+        float distance = Vector2.Distance(transform.position, player.transform.position);
 
-            // Flip the sprite based on movement direction
-            FlipSprite(direction);
+        if (distance < chaseDistanceThreshold)
+        {
+            if (distance <= attackDistanceThreshold)
+            {
+                if (attackTimer >= attackDelay)
+                {
+                    Attack();
+                    attackTimer = 0;
+                }
+                else
+                {
+                    StopMovement();
+                }
+            }
+            else
+            {
+                ChasePlayer();
+            }
         }
         else
         {
-            // If the enemy is not moving, set "isRunning" to false to trigger the idle animation
-            animator.SetBool("isRunning", false);
+            StopMovement();
         }
 
-        // Set the "xVelocity" and "yVelocity" to control smooth transitions (optional)
+        attackTimer += Time.deltaTime;
+    }
+
+    private void ChasePlayer()
+    {
+        Vector2 direction = (player.transform.position - transform.position).normalized;
+        transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
+
+        FlipSprite(direction);
+
         animator.SetFloat("xVelocity", Mathf.Abs(direction.x));
         animator.SetFloat("yVelocity", direction.y);
+        animator.SetBool("isRunning", true);
+        animator.SetBool("isAttacking", false);
+    }
+
+    private void StopMovement()
+    {
+        animator.SetBool("isRunning", false);
+        animator.SetBool("isAttacking", false);
+    }
+
+    private void Attack()
+    {
+        Debug.Log("Attacking");  // Log to check if Attack() is being called
+        animator.SetBool("isAttacking", true);
+        // Call additional attack functionality here if needed
     }
 
     private void FlipSprite(Vector2 direction)
     {
-        // Check if the enemy is moving left or right and flip sprite accordingly
-        if (direction.x > 0 && !isFacingRight)
+        if (direction.x > 0 && !isFacingRight || direction.x < 0 && isFacingRight)
         {
-            Flip();
+            isFacingRight = !isFacingRight;
+            Vector3 scale = transform.localScale;
+            scale.x *= -1f;
+            transform.localScale = scale;
         }
-        else if (direction.x < 0 && isFacingRight)
-        {
-            Flip();
-        }
-    }
-
-    private void Flip()
-    {
-        // Invert the x scale to flip the sprite
-        isFacingRight = !isFacingRight;
-        Vector3 ls = transform.localScale;
-        ls.x *= -1f; // Flip the sprite by inverting the x scale
-        transform.localScale = ls;
     }
 }
