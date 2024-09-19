@@ -33,7 +33,7 @@ public class PlayerHP : MonoBehaviour
         animator.SetBool("IsDead", true);
 
         GetComponent<Collider2D>().enabled = false;
-        this.enabled = false;
+        //this.enabled = false;
     }
 
 

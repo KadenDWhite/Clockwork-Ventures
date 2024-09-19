@@ -562,6 +562,7 @@ GameObject:
   - component: {fileID: 199037366}
   - component: {fileID: 199037365}
   - component: {fileID: 199037364}
+  - component: {fileID: 199037370}
   m_Layer: 8
   m_Name: Goblin Bandit
   m_TagString: Untagged
@@ -581,7 +582,8 @@ Transform:
   m_LocalPosition: {x: 22.1, y: -20.9, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 925726667}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &199037363
@@ -671,9 +673,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1271117658}
   speed: 5
-  distanceBetween: 25
-  animator: {fileID: 199037364}
-  spriteRenderer: {fileID: 199037363}
+  chaseDistance: 25
+  attackDistance: 2
+  attackDelay: 1
 --- !u!114 &199037366
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -747,7 +749,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.07320547, y: -0.7569113}
+  m_Offset: {x: -0.051949024, y: -0.6293714}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -758,8 +760,27 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.607338, y: 2.6116014}
+  m_Size: {x: 2.3097467, y: 2.866681}
   m_EdgeRadius: 0
+--- !u!114 &199037370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 199037359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9912b73de0315804db5aa6ae8eb0f5a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackPoint: {fileID: 925726667}
+  playerLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  attackRange: 1.37
+  attackDMG: 20
+  attackRate: 1
 --- !u!1 &202321074
 GameObject:
   m_ObjectHideFlags: 0
@@ -2346,6 +2367,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1271117661}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &925726666
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 925726667}
+  m_Layer: 0
+  m_Name: AttackPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &925726667
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 925726666}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -3.44, y: -0.8300006, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 199037360}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &927454124
 GameObject:
   m_ObjectHideFlags: 0
@@ -2841,9 +2893,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1271117658}
   speed: 5
-  distanceBetween: 25
-  animator: {fileID: 1127527608}
-  spriteRenderer: {fileID: 1127527613}
+  chaseDistance: 3
+  attackDistance: 0.8
+  attackDelay: 1
 --- !u!114 &1127527610
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3456,6 +3508,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 1271117666}
   maxHP: 100
+  currentHP: 0
 --- !u!1 &1389985181
 GameObject:
   m_ObjectHideFlags: 0
@@ -4307,7 +4360,7 @@ Transform:
   m_GameObject: {fileID: 1676545997}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -38.35997, y: -18.784382, z: -10}
+  m_LocalPosition: {x: -38.35997, y: -18.784216, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5256,6 +5309,6 @@ SceneRoots:
   - {fileID: 927454126}
   - {fileID: 267865099}
   - {fileID: 735759554}
-  - {fileID: 1271117661}
   - {fileID: 1519944030}
+  - {fileID: 1271117661}
   - {fileID: 199037360}

@@ -4,56 +4,65 @@ using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
-    public GameObject player;
     public float speed = 2f;
-    public float chaseDistanceThreshold = 3f;
-    public float attackDistanceThreshold = 0.8f;
-    public float attackDelay = 1f;
+    public float chaseRange = 5f;
+    public float attackRange = 1f;
+    public float attackDamage = 20;
+    public float attackDelay = 1.5f;
+    public float roamRadius = 3f;
+    public float roamDelay = 3f;
 
-    private float attackTimer;
     private Animator animator;
+    private GameObject player;
+    private Vector2 roamPosition;
+    private float attackTimer = 0f;
+    private float roamTimer = 0f;
+    private bool isRoaming = true;
     private bool isFacingRight = false;
     private PlayerHP playerHP;
+    private Vector2 startPosition;
+    private bool isStunned = false; // Tracks if the enemy is stunned
+    private float stunDuration = 1f; // Duration of the stun effect
 
-    private void Start()
+    void Start()
     {
         animator = GetComponent<Animator>();
-        attackTimer = attackDelay;
-        playerHP = player.GetComponent<PlayerHP>();
+        player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
+        {
+            playerHP = player.GetComponent<PlayerHP>();
+        }
+        startPosition = transform.position;
+        SetNewRoamPosition();
     }
 
-    private void Update()
+    void Update()
     {
-        if (player == null || playerHP.currentHP <= 0)
+        if (isStunned)
+        {
+            // If stunned, do not process movement or attacking
+            return;
+        }
+
+        if (player == null || playerHP == null || playerHP.currentHP <= 0)
         {
             StopMovement();
             return;
         }
 
-        float distance = Vector2.Distance(transform.position, player.transform.position);
+        float distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
 
-        if (distance < chaseDistanceThreshold)
+        if (distanceToPlayer <= attackRange)
         {
-            if (distance <= attackDistanceThreshold)
-            {
-                if (attackTimer >= attackDelay)
-                {
-                    Attack();
-                    attackTimer = 0;
-                }
-                else
-                {
-                    StopMovement();
-                }
-            }
-            else
-            {
-                ChasePlayer();
-            }
+            Attack();
+        }
+        else if (distanceToPlayer <= chaseRange)
+        {
+            ChasePlayer();
         }
         else
         {
-            StopMovement();
+            Roam();
         }
 
         attackTimer += Time.deltaTime;
@@ -61,28 +70,74 @@ public class EnemyAI : MonoBehaviour
 
     private void ChasePlayer()
     {
+        isRoaming = false;
         Vector2 direction = (player.transform.position - transform.position).normalized;
         transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
 
         FlipSprite(direction);
 
         animator.SetFloat("xVelocity", Mathf.Abs(direction.x));
-        animator.SetFloat("yVelocity", direction.y);
         animator.SetBool("isRunning", true);
         animator.SetBool("isAttacking", false);
+    }
+
+    private void Roam()
+    {
+        if (!isRoaming)
+        {
+            roamTimer = 0f;
+            isRoaming = true;
+        }
+
+        roamTimer += Time.deltaTime;
+
+        if (roamTimer >= roamDelay)
+        {
+            SetNewRoamPosition();
+            roamTimer = 0f;
+        }
+
+        if (Vector2.Distance(transform.position, roamPosition) > 0.1f)
+        {
+            Vector2 direction = (roamPosition - (Vector2)transform.position).normalized;
+            transform.position = Vector2.MoveTowards(transform.position, roamPosition, speed * Time.deltaTime);
+
+            FlipSprite(direction);
+
+            animator.SetFloat("xVelocity", Mathf.Abs(direction.x));
+            animator.SetBool("isRunning", true);
+        }
+        else
+        {
+            animator.SetBool("isRunning", false);
+        }
+    }
+
+    private void SetNewRoamPosition()
+    {
+        roamPosition = startPosition + new Vector2(
+            Random.Range(-roamRadius, roamRadius),
+            Random.Range(-roamRadius, roamRadius)
+        );
+    }
+
+    private void Attack()
+    {
+        if (attackTimer >= attackDelay)
+        {
+            animator.SetTrigger("Attack");
+            playerHP.TakeDMG(Mathf.RoundToInt(attackDamage));
+            attackTimer = 0f;
+        }
+
+        animator.SetBool("isRunning", false);
+        animator.SetBool("isAttacking", true);
     }
 
     private void StopMovement()
     {
         animator.SetBool("isRunning", false);
         animator.SetBool("isAttacking", false);
-    }
-
-    private void Attack()
-    {
-        Debug.Log("Attacking");  // Log to check if Attack() is being called
-        animator.SetBool("isAttacking", true);
-        // Call additional attack functionality here if needed
     }
 
     private void FlipSprite(Vector2 direction)
@@ -94,5 +149,29 @@ public class EnemyAI : MonoBehaviour
             scale.x *= -1f;
             transform.localScale = scale;
         }
+    }
+
+    private IEnumerator StunCoroutine()
+    {
+        isStunned = true;
+        animator.SetTrigger("Hurt");
+        yield return new WaitForSeconds(stunDuration);
+        isStunned = false;
+    }
+
+    public void TakeDamage(int damage)
+    {
+        StartCoroutine(StunCoroutine());
+    }
+
+    // Visualize attack and chase distances in editor
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, attackRange); // Attack range
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, chaseRange);  // Chase range
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(startPosition, roamRadius);  // Roam radius
     }
 }
