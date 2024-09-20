@@ -4,74 +4,174 @@ using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
-    public GameObject player;
-    public float speed;
-    public float distanceBetween;
-    public Animator animator;
-    public SpriteRenderer spriteRenderer; // Add reference to SpriteRenderer
+    public float speed = 2f;
+    public float chaseRange = 5f;
+    public float attackRange = 1f;
+    public float attackDamage = 20;
+    public float attackDelay = 1.5f;
+    public float roamRadius = 3f;
+    public float roamDelay = 3f;
 
-    private float distance;
-    private bool isFacingRight = false; // Track which direction the enemy is facing
+    private Animator animator;
+    private GameObject player;
+    private Vector2 roamPosition;
+    private float attackTimer = 0f;
+    private float roamTimer = 0f;
+    private bool isRoaming = true;
+    private bool isFacingRight = false;
+    private PlayerHP playerHP;
+    private Vector2 startPosition;
+    private bool isStunned = false; // Tracks if the enemy is stunned
+    private float stunDuration = 1f; // Duration of the stun effect
 
     void Start()
     {
-        if (spriteRenderer == null)
+        animator = GetComponent<Animator>();
+        player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
         {
-            spriteRenderer = GetComponent<SpriteRenderer>(); // Ensure SpriteRenderer is assigned
+            playerHP = player.GetComponent<PlayerHP>();
         }
+        startPosition = transform.position;
+        SetNewRoamPosition();
     }
 
     void Update()
     {
-        // Calculate the distance between the enemy and the player
-        distance = Vector2.Distance(transform.position, player.transform.position);
-
-        // Calculate the direction towards the player and normalize it
-        Vector2 direction = player.transform.position - transform.position;
-        direction.Normalize();
-
-        // If the player is within the specified distance, the enemy moves towards the player
-        if (distance < distanceBetween)
+        if (isStunned)
         {
-            // Move the enemy towards the player
-            transform.position = Vector2.MoveTowards(this.transform.position, player.transform.position, speed * Time.deltaTime);
+            // If stunned, do not process movement or attacking
+            return;
+        }
 
-            // Set the "isRunning" parameter to true to trigger the run animation
-            animator.SetBool("isRunning", true);
+        if (player == null || playerHP == null || playerHP.currentHP <= 0)
+        {
+            StopMovement();
+            return;
+        }
 
-            // Flip the sprite based on movement direction
-            FlipSprite(direction);
+        float distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
+
+        if (distanceToPlayer <= attackRange)
+        {
+            Attack();
+        }
+        else if (distanceToPlayer <= chaseRange)
+        {
+            ChasePlayer();
         }
         else
         {
-            // If the enemy is not moving, set "isRunning" to false to trigger the idle animation
-            animator.SetBool("isRunning", false);
+            Roam();
         }
 
-        // Set the "xVelocity" and "yVelocity" to control smooth transitions (optional)
+        attackTimer += Time.deltaTime;
+    }
+
+    private void ChasePlayer()
+    {
+        isRoaming = false;
+        Vector2 direction = (player.transform.position - transform.position).normalized;
+        transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
+
+        FlipSprite(direction);
+
         animator.SetFloat("xVelocity", Mathf.Abs(direction.x));
-        animator.SetFloat("yVelocity", direction.y);
+        animator.SetBool("isRunning", true);
+        animator.SetBool("isAttacking", false);
+    }
+
+    private void Roam()
+    {
+        if (!isRoaming)
+        {
+            roamTimer = 0f;
+            isRoaming = true;
+        }
+
+        roamTimer += Time.deltaTime;
+
+        if (roamTimer >= roamDelay)
+        {
+            SetNewRoamPosition();
+            roamTimer = 0f;
+        }
+
+        if (Vector2.Distance(transform.position, roamPosition) > 0.1f)
+        {
+            Vector2 direction = (roamPosition - (Vector2)transform.position).normalized;
+            transform.position = Vector2.MoveTowards(transform.position, roamPosition, speed * Time.deltaTime);
+
+            FlipSprite(direction);
+
+            animator.SetFloat("xVelocity", Mathf.Abs(direction.x));
+            animator.SetBool("isRunning", true);
+        }
+        else
+        {
+            animator.SetBool("isRunning", false);
+        }
+    }
+
+    private void SetNewRoamPosition()
+    {
+        roamPosition = startPosition + new Vector2(
+            Random.Range(-roamRadius, roamRadius),
+            Random.Range(-roamRadius, roamRadius)
+        );
+    }
+
+    private void Attack()
+    {
+        if (attackTimer >= attackDelay)
+        {
+            animator.SetTrigger("Attack");
+            playerHP.TakeDMG(Mathf.RoundToInt(attackDamage));
+            attackTimer = 0f;
+        }
+
+        animator.SetBool("isRunning", false);
+        animator.SetBool("isAttacking", true);
+    }
+
+    private void StopMovement()
+    {
+        animator.SetBool("isRunning", false);
+        animator.SetBool("isAttacking", false);
     }
 
     private void FlipSprite(Vector2 direction)
     {
-        // Check if the enemy is moving left or right and flip sprite accordingly
-        if (direction.x > 0 && !isFacingRight)
+        if (direction.x > 0 && !isFacingRight || direction.x < 0 && isFacingRight)
         {
-            Flip();
-        }
-        else if (direction.x < 0 && isFacingRight)
-        {
-            Flip();
+            isFacingRight = !isFacingRight;
+            Vector3 scale = transform.localScale;
+            scale.x *= -1f;
+            transform.localScale = scale;
         }
     }
 
-    private void Flip()
+    private IEnumerator StunCoroutine()
     {
-        // Invert the x scale to flip the sprite
-        isFacingRight = !isFacingRight;
-        Vector3 ls = transform.localScale;
-        ls.x *= -1f; // Flip the sprite by inverting the x scale
-        transform.localScale = ls;
+        isStunned = true;
+        animator.SetTrigger("Hurt");
+        yield return new WaitForSeconds(stunDuration);
+        isStunned = false;
+    }
+
+    public void TakeDamage(int damage)
+    {
+        StartCoroutine(StunCoroutine());
+    }
+
+    // Visualize attack and chase distances in editor
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, attackRange); // Attack range
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, chaseRange);  // Chase range
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(startPosition, roamRadius);  // Roam radius
     }
 }

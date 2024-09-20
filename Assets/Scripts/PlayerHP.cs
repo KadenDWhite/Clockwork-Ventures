@@ -7,7 +7,7 @@ public class PlayerHP : MonoBehaviour
     public Animator animator;
 
     public int maxHP = 100;
-    int currentHP;
+    public int currentHP;
 
     void Start()
     {
@@ -33,7 +33,7 @@ public class PlayerHP : MonoBehaviour
         animator.SetBool("IsDead", true);
 
         GetComponent<Collider2D>().enabled = false;
-        this.enabled = false;
+        //this.enabled = false;
     }
 
 

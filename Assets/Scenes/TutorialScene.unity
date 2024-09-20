@@ -560,8 +560,8 @@ GameObject:
   - component: {fileID: 199037368}
   - component: {fileID: 199037369}
   - component: {fileID: 199037366}
-  - component: {fileID: 199037365}
   - component: {fileID: 199037364}
+  - component: {fileID: 199037370}
   m_Layer: 8
   m_Name: Goblin Bandit
   m_TagString: Untagged
@@ -657,23 +657,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &199037365
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 199037359}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf25d56f738db014db0b68d0fcaebe2c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 1271117658}
-  speed: 5
-  distanceBetween: 25
-  animator: {fileID: 199037364}
-  spriteRenderer: {fileID: 199037363}
 --- !u!114 &199037366
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -687,7 +670,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 199037364}
-  maxHP: 100
+  maxHP: 60
 --- !u!50 &199037368
 Rigidbody2D:
   serializedVersion: 4
@@ -700,7 +683,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1000
+  m_Mass: 100000
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -747,7 +730,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.07320547, y: -0.7569113}
+  m_Offset: {x: 0.11448175, y: -0.6893022}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -758,8 +741,27 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.607338, y: 2.6116014}
+  m_Size: {x: 2.617889, y: 2.9578028}
   m_EdgeRadius: 0
+--- !u!114 &199037370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 199037359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf25d56f738db014db0b68d0fcaebe2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
+  chaseRange: 25
+  attackRange: 4.5
+  attackDamage: 4
+  attackDelay: 1
+  roamRadius: 20
+  roamDelay: 3
 --- !u!1 &202321074
 GameObject:
   m_ObjectHideFlags: 0
@@ -2839,11 +2841,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf25d56f738db014db0b68d0fcaebe2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1271117658}
   speed: 5
-  distanceBetween: 25
-  animator: {fileID: 1127527608}
-  spriteRenderer: {fileID: 1127527613}
+  chaseRange: 5
+  attackRange: 1
+  attackDamage: 20
+  attackDelay: 1
+  roamRadius: 3
+  roamDelay: 3
 --- !u!114 &1127527610
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3224,7 +3228,7 @@ GameObject:
   - component: {fileID: 1271117667}
   m_Layer: 7
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3241,7 +3245,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 100
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -3418,9 +3422,9 @@ MonoBehaviour:
   enemyLayers:
     serializedVersion: 2
     m_Bits: 256
-  attackRange: 3
+  attackRange: 4
   attackDMG: 20
-  attackRate: 1
+  attackRate: 0.65
 --- !u!95 &1271117666
 Animator:
   serializedVersion: 5
@@ -3456,6 +3460,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 1271117666}
   maxHP: 100
+  currentHP: 0
 --- !u!1 &1389985181
 GameObject:
   m_ObjectHideFlags: 0
@@ -4307,7 +4312,7 @@ Transform:
   m_GameObject: {fileID: 1676545997}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -38.35997, y: -18.784382, z: -10}
+  m_LocalPosition: {x: -38.35997, y: -18.784231, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5256,6 +5261,6 @@ SceneRoots:
   - {fileID: 927454126}
   - {fileID: 267865099}
   - {fileID: 735759554}
-  - {fileID: 1271117661}
   - {fileID: 1519944030}
+  - {fileID: 1271117661}
   - {fileID: 199037360}

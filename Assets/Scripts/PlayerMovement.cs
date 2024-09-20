@@ -21,6 +21,8 @@ public class PlayerMovement : MonoBehaviour
 
     private float currentSpeed;
     private bool isJumping; // Tracks if the player is currently jumping
+    private bool isStunned = false; // Tracks if the player is stunned
+    private float stunDuration = 1f; // Duration of the stun effect
 
     void Start()
     {
@@ -31,6 +33,12 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        if (isStunned)
+        {
+            // If stunned, do not process movement or jumping
+            return;
+        }
+
         // Gets horizontal input
         move = Input.GetAxis("Horizontal");
 
@@ -116,14 +124,31 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        // Applies the movement with the current speed
-        rb.velocity = new Vector2(move * currentSpeed, rb.velocity.y);
-        animator.SetFloat("xVelocity", Mathf.Abs(rb.velocity.x));
-        animator.SetFloat("yVelocity", rb.velocity.y);
+        if (!isStunned)
+        {
+            // Applies the movement with the current speed
+            rb.velocity = new Vector2(move * currentSpeed, rb.velocity.y);
+            animator.SetFloat("xVelocity", Mathf.Abs(rb.velocity.x));
+            animator.SetFloat("yVelocity", rb.velocity.y);
+        }
     }
 
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireCube(transform.position - transform.up * castDistance, boxSize);
+    }
+
+    public void TakeDamage(int damage)
+    {
+        // Trigger hurt animation and stun effect
+        animator.SetTrigger("Hurt");
+        StartCoroutine(StunCoroutine());
+    }
+
+    private IEnumerator StunCoroutine()
+    {
+        isStunned = true;
+        yield return new WaitForSeconds(stunDuration);
+        isStunned = false;
     }
 }
