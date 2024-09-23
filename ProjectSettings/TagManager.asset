@@ -81,6 +81,9 @@ TagManager:
   - name: TutorialNPC
     uniqueID: 3036499513
     locked: 0
+  - name: QR Code
+    uniqueID: 2969741311
+    locked: 0
   - name: Goblin
     uniqueID: 685440995
     locked: 0
