@@ -6,23 +6,30 @@ public class EnemyAI : MonoBehaviour
 {
     public float speed = 2f;
     public float chaseRange = 5f;
+
     public float attackRange = 1f;
     public float attackDamage = 20;
     public float attackDelay = 1.5f;
+
     public float roamRadius = 3f;
     public float roamDelay = 3f;
 
     private Animator animator;
     private GameObject player;
     private Vector2 roamPosition;
+
     private float attackTimer = 0f;
     private float roamTimer = 0f;
     private bool isRoaming = true;
     private bool isFacingRight = false;
+
     private PlayerHP playerHP;
     private Vector2 startPosition;
+
     private bool isStunned = false; // Tracks if the enemy is stunned
     private float stunDuration = 1f; // Duration of the stun effect
+
+    private bool isIdle = false;
 
     void Start()
     {
@@ -71,6 +78,7 @@ public class EnemyAI : MonoBehaviour
     private void ChasePlayer()
     {
         isRoaming = false;
+        isIdle = false;
         Vector2 direction = (player.transform.position - transform.position).normalized;
         transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
 
@@ -83,34 +91,53 @@ public class EnemyAI : MonoBehaviour
 
     private void Roam()
     {
-        if (!isRoaming)
-        {
-            roamTimer = 0f;
-            isRoaming = true;
-        }
-
-        roamTimer += Time.deltaTime;
-
-        if (roamTimer >= roamDelay)
-        {
-            SetNewRoamPosition();
-            roamTimer = 0f;
-        }
-
-        if (Vector2.Distance(transform.position, roamPosition) > 0.1f)
-        {
-            Vector2 direction = (roamPosition - (Vector2)transform.position).normalized;
-            transform.position = Vector2.MoveTowards(transform.position, roamPosition, speed * Time.deltaTime);
-
-            FlipSprite(direction);
-
-            animator.SetFloat("xVelocity", Mathf.Abs(direction.x));
-            animator.SetBool("isRunning", true);
-        }
-        else
+        // If currently idle, just stay idle
+        if (isIdle)
         {
             animator.SetBool("isRunning", false);
+            return; // Exit if currently idle
         }
+
+        if (isRoaming)
+        {
+            if (Vector2.Distance(transform.position, roamPosition) > 0.1f)
+            {
+                Vector2 direction = (roamPosition - (Vector2)transform.position).normalized;
+                transform.position = Vector2.MoveTowards(transform.position, roamPosition, speed * Time.deltaTime);
+
+                FlipSprite(direction);
+
+                animator.SetFloat("xVelocity", Mathf.Abs(direction.x));
+                animator.SetBool("isRunning", true);
+            }
+            else
+            {
+                // When reaching the roam position, start idle coroutine
+                StartCoroutine(IdleCoroutine());
+            }
+        }
+
+        // Manage roam timer to determine when to set a new roam position
+        roamTimer += Time.deltaTime;
+
+        // Random chance to go idle based on roamTimer
+        if (roamTimer >= Random.Range(3f, 5f) && !isIdle) // Random range for idle
+        {
+            StartCoroutine(IdleCoroutine());
+        }
+    }
+
+    private IEnumerator IdleCoroutine()
+    {
+        isIdle = true; // Set to idle
+        animator.SetBool("isIdle", true); // Trigger idle animation
+
+        yield return new WaitForSeconds(Random.Range(1f, 3f)); // Random idle duration
+
+        isIdle = false; // End idle state
+        animator.SetBool("isIdle", false); // Reset idle animation
+
+        SetNewRoamPosition(); // Decide the next roam position
     }
 
     private void SetNewRoamPosition()
@@ -119,6 +146,8 @@ public class EnemyAI : MonoBehaviour
             Random.Range(-roamRadius, roamRadius),
             Random.Range(-roamRadius, roamRadius)
         );
+
+        roamTimer = 0f; // Reset roam timer for next roam decision
     }
 
     private void Attack()
