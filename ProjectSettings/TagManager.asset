@@ -87,6 +87,9 @@ TagManager:
   - name: Goblin
     uniqueID: 685440995
     locked: 0
+  - name: Dialogue
+    uniqueID: 3205357255
+    locked: 0
   - name: Player
     uniqueID: 3441822855
     locked: 0
