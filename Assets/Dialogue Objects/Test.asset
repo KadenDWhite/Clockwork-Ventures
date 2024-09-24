@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: Test
   m_EditorClassIdentifier: 
   dialogue:
-  - 'This is my dialogue!
+  - 'This, is my dialogue!!!
 
-    Hello.'
-  - 'This is my second dialogue.
+    Hello..'
+  - 'This, is my second dialogue..
 
-    Goodbye!
+    Goodbye!!!
 
 '
   reponses:
