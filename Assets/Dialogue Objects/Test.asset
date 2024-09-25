@@ -13,14 +13,19 @@ MonoBehaviour:
   m_Name: Test
   m_EditorClassIdentifier: 
   dialogue:
-  - 'This, is my dialogue!!!
+  - Hello Lost Time-Keeper, my name is Gobi, and I welcome you to my beloved post!
+  - This is currently just the demo and only a tutorial for this game.
+  - I'm not here to explain your story, that's for you to learn throughout the later
+    game.
+  - But you must be wondering why I'm here?
+  - Well, this is where I'm gonna teach you the basics!
+  - "For starters, you already know how to move around with WSAD. \nPressing space
+    will let ya jump."
+  - By pressing Q, that'll draw/sheathe your weapon. Click for combat.
+  - 'Now that you''ve learned all of this...
 
-    Hello..'
-  - 'This, is my second dialogue..
-
-    Goodbye!!!
-
-'
+    would you like to face off a Goblin
+    Bandit to test the combat?'
   reponses:
   - responseText: Yes
     dialogueObject: {fileID: 11400000, guid: 8fb57343eaad1af419f8dabd40873d9b, type: 2}
