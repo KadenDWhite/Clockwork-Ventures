@@ -50,7 +50,7 @@ public class DialogueUI : MonoBehaviour
             yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.E));
         }
 
-        if (dialogueObject.HasResponses)
+        if (dialogueObject.HasResponses && dialogueObject.Responses != null)
         {
             responseHandler.ShowResponses(dialogueObject.Responses);
         }
