@@ -4,14 +4,16 @@ using UnityEngine;
 using UnityEditor;
 using UnityEngine.Events;
 
+#if UNITY_EDITOR
 [CustomEditor(typeof(GunManager))]
 public class GunManagerEditor : Editor
 {
+
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
 
-        GunManager gunManager = (GunManager)target;
+        GunManager gunManager = (GunManager)target;  // anything can be an object
         if (GUILayout.Button("Prev"))
         {
             gunManager.PrevGun();
@@ -28,6 +30,7 @@ public class GunManagerEditor : Editor
         }
     }
 }
+#endif
 
 public class GunManager : MonoBehaviour
 {
