@@ -19,10 +19,11 @@ MonoBehaviour:
     game.
   - But you must be wondering why I'm here?
   - Well, this is where I'm gonna teach you the basics!
-  - "For starters, you already know how to move around with WSAD. \nPressing space
+  - "For starters, you already know how to move around with WSAD. \n\nPressing space
     will let ya jump."
-  - By pressing Q, that'll draw/sheathe your weapon. Click for combat.
+  - "By pressing Q, that'll draw/sheathe your weapon. \n\nClick for combat."
   - 'Now that you''ve learned all of this...
+
 
     would you like to face off a Goblin
     Bandit to test the combat?'

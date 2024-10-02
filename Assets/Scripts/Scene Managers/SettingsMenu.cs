@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
-using UnityEngine.UI;
 using TMPro;
+using UnityEngine.UI;
 
 public class SettingsMenu : MonoBehaviour
 {
@@ -48,7 +48,7 @@ public class SettingsMenu : MonoBehaviour
 
     public void SetResolution(int resolutionIndex)
     {
-        pendingResolutionIndex = resolutionIndex;
+        pendingResolutionIndex = resolutionIndex; // Store the new resolution index
         Resolution resolution = resolutions[resolutionIndex];
 
         // Set the resolution temporarily
@@ -91,6 +91,11 @@ public class SettingsMenu : MonoBehaviour
         // Revert to the previous resolution
         Resolution resolution = resolutions[currentResolutionIndex];
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
+
+        // Update dropdown value to reflect the current resolution
+        resolutionDropdown.value = currentResolutionIndex;
+        resolutionDropdown.RefreshShownValue();
+
         awaitingConfirmation = false;
         confirmationPanel.SetActive(false);
         if (confirmationRoutine != null)
