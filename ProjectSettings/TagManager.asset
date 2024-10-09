@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ground
+  - HP
   layers:
   - Default
   - TransparentFX
@@ -16,7 +17,7 @@ TagManager:
   - Player
   - Enemies
   - Test
-  - 
+  - HP
   - 
   - 
   - 
@@ -92,6 +93,9 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 3441822855
+    locked: 0
+  - name: HP
+    uniqueID: 2963608679
     locked: 0
   - name: BG12
     uniqueID: 3245918439

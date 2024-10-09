@@ -8,6 +8,9 @@ public class PauseMenu : MonoBehaviour
     public static bool GameIsPaused = false;
 
     public GameObject pauseMenuUI;
+    public PlayerMovement playerMovement;
+    public PlayerAttack playerAttack;
+    public WeaponManager weaponManager;
 
     // Update is called once per frame
     void Update()
@@ -30,6 +33,11 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         GameIsPaused = false;
+
+        // Enable player movement, attack, and weapon manager scripts
+        if (playerMovement != null) playerMovement.enabled = true;
+        if (playerAttack != null) playerAttack.enabled = true;
+        if (weaponManager != null) weaponManager.enabled = true;
     }
 
     void Pause()
@@ -37,6 +45,11 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0;
         GameIsPaused = true;
+
+        // Disable player movement, attack, and weapon manager scripts
+        if (playerMovement != null) playerMovement.enabled = false;
+        if (playerAttack != null) playerAttack.enabled = false;
+        if (weaponManager != null) weaponManager.enabled = false;
     }
 
     public void LoadMenu()
