@@ -13,6 +13,7 @@ public class PlayerHP : MonoBehaviour
     public int maxHP = 100;
     public int currentHP;
     public GameObject death;
+    public PauseMenu pauseMenuUI;
 
     public Sprite[] healthSprites; // Array for health bar sprites (6 in total)
 
@@ -86,6 +87,7 @@ public class PlayerHP : MonoBehaviour
 
         // Disable the entire player object when the player dies
         gameObject.SetActive(false); // Disable the player game object
+        pauseMenuUI.enabled = false;
         death.SetActive(true);
     }
 }
