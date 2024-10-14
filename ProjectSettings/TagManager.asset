@@ -76,8 +76,17 @@ TagManager:
   - name: BG4
     uniqueID: 2584289767
     locked: 0
-  - name: Leaves
+  - name: Tiles
     uniqueID: 3775399915
+    locked: 0
+  - name: Ground
+    uniqueID: 2223532677
+    locked: 0
+  - name: Death Zone
+    uniqueID: 1050593269
+    locked: 0
+  - name: Tiles_Decor
+    uniqueID: 3230621267
     locked: 0
   - name: TutorialNPC
     uniqueID: 3036499513

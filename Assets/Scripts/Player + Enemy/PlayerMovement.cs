@@ -34,6 +34,12 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>(); // Initializes SpriteRenderer
+
+        // Optionally, apply a Physics Material 2D with zero friction here if not done in the editor
+        PhysicsMaterial2D noFriction = new PhysicsMaterial2D();
+        noFriction.friction = 0;
+        noFriction.bounciness = 0;
+        GetComponent<Collider2D>().sharedMaterial = noFriction;
     }
 
     void Update()
@@ -79,12 +85,9 @@ public class PlayerMovement : MonoBehaviour
         // Flipping the sprite based on movement direction
         FlipSprite();
 
-        // Applying movement
-        rb.velocity = new Vector2(move * currentSpeed, rb.velocity.y);
-
         if (Input.GetKeyDown(KeyCode.E))
         {
-                Interactable?.Interact(this);
+            Interactable?.Interact(this);
         }
     }
 
@@ -138,7 +141,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!isStunned)
         {
-            // Applies the movement with the current speed
+            // Applies the movement with the current speed in FixedUpdate
             rb.velocity = new Vector2(move * currentSpeed, rb.velocity.y);
             animator.SetFloat("xVelocity", Mathf.Abs(rb.velocity.x));
             animator.SetFloat("yVelocity", rb.velocity.y);
