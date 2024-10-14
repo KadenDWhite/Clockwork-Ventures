@@ -9,7 +9,7 @@ public class PlayerAttack : MonoBehaviour
 
     public Transform attackPoint;
     public LayerMask enemyLayers;
-
+    public AudioSource SFX;
     
     public float attackRange = 0.5f;
     public int attackDMG = 20;
@@ -30,6 +30,7 @@ public class PlayerAttack : MonoBehaviour
             if (weaponManager.IsWeaponDrawn() && Input.GetMouseButtonDown(0))
             {
                 Attack();
+                SFX.Play();
                 nextAttackTime = Time.time + 1f / attackRate;
             }
         } 
