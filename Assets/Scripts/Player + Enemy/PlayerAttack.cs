@@ -7,10 +7,10 @@ public class PlayerAttack : MonoBehaviour
     private WeaponManager weaponManager;
     private Animator animator;
 
+    public AudioClip attackSound;
     public Transform attackPoint;
     public LayerMask enemyLayers;
-    public AudioSource SFX;
-    
+
     public float attackRange = 0.5f;
     public int attackDMG = 20;
 
@@ -30,7 +30,6 @@ public class PlayerAttack : MonoBehaviour
             if (weaponManager.IsWeaponDrawn() && Input.GetMouseButtonDown(0))
             {
                 Attack();
-                SFX.Play();
                 nextAttackTime = Time.time + 1f / attackRate;
             }
         } 
@@ -39,6 +38,7 @@ public class PlayerAttack : MonoBehaviour
     {
             //Play an attack animation
             animator.SetTrigger("Attack");
+            PlayAttackSound();
 
             //Detect enemies in range of attack
             Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
@@ -46,9 +46,18 @@ public class PlayerAttack : MonoBehaviour
             //Damage to enemies
             foreach (Collider2D enemy in hitEnemies)
             {
-                enemy.GetComponent<EnemyHP>().TakeDMG(attackDMG);
+                enemy.GetComponent<EnemyHP>().TakeDMG(attackDMG, this.gameObject);
             }  
     }
+
+    void PlayAttackSound()
+    {
+        if (SFXManager.instance != null && attackSound != null)
+        {
+            SFXManager.instance.PlaySFX(attackSound);
+        }
+    }
+
     void OnDrawGizmosSelected()
     {
         if (attackPoint == null)

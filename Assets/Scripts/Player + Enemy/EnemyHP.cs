@@ -8,17 +8,23 @@ public class EnemyHP : MonoBehaviour
 
     public int maxHP = 100;
     public int currentHP;
+    public KnockbackManager knockbackManager;
 
     void Start()
     {
         currentHP = maxHP;
     }
 
-    public void TakeDMG(int dmg)
+    public void TakeDMG(int dmg, GameObject attacker)
     {
         currentHP -= dmg;
 
         animator.SetTrigger("Hurt");
+
+        if (knockbackManager != null)
+        {
+            knockbackManager.PlayFeedback(attacker);
+        }
 
         if (currentHP <= 0)
         {

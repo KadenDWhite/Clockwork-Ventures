@@ -8,7 +8,8 @@ public class PlayerHP : MonoBehaviour
     public Animator animator;
     public SpriteRenderer spriteRenderer;
 
-    public TextMeshProUGUI healthText; // Reference to the TextMeshProUGUI component
+    public TextMeshProUGUI healthText;
+    public KnockbackManager knockbackManager;
 
     public int maxHP = 100;
     public int currentHP;
@@ -23,7 +24,7 @@ public class PlayerHP : MonoBehaviour
         UpdateHealthBar(); // Initialize the correct sprite based on starting health
     }
 
-    public void TakeDMG(int dmg)
+    public void TakeDMG(int dmg, GameObject attacker)
     {
         currentHP -= dmg;
         currentHP = Mathf.Clamp(currentHP, 0, maxHP); // Ensure HP doesn't go below 0 or above maxHP
@@ -31,6 +32,11 @@ public class PlayerHP : MonoBehaviour
         animator.SetTrigger("Hurt");
         UpdateHealthBar(); // Update the health bar sprite after taking damage
         UpdateHealthText(); // Update health text display
+
+        if (knockbackManager != null)
+        {
+            knockbackManager.PlayFeedback(attacker);
+        }
 
         if (currentHP <= 0)
         {

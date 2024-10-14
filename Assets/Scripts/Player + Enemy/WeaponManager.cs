@@ -8,6 +8,9 @@ public class WeaponManager : MonoBehaviour
     private Animator animator;
     private PlayerMovement playerMovement; // Reference to PlayerMovement script
 
+    public AudioClip drawnSound;
+    public AudioClip sheatheSound;
+
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -35,16 +38,34 @@ public class WeaponManager : MonoBehaviour
         if (isDrawn)
         {
             animator.SetTrigger("Draw"); // Trigger Draw animation
+            Invoke("PlayDrawnSound", 0.5f); // Delay the sound by 0.5 seconds
         }
         else
         {
             animator.SetTrigger("Sheathe"); // Trigger Sheathe animation
+            PlaySheatheSound();
         }
     }
 
     public bool IsWeaponDrawn()
     {
         return isDrawn;
+    }
+
+    void PlayDrawnSound()
+    {
+        if (SFXManager.instance != null && drawnSound != null)
+        {
+            SFXManager.instance.PlaySFX(drawnSound);
+        }
+    }
+
+    void PlaySheatheSound()
+    {
+        if (SFXManager.instance != null && sheatheSound != null)
+        {
+            SFXManager.instance.PlaySFX(sheatheSound);
+        }
     }
 
     private void HandleAttackMovement()

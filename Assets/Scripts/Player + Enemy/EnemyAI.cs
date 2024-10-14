@@ -31,13 +31,17 @@ public class EnemyAI : MonoBehaviour
 
     private bool isIdle = false;
 
+    private KnockbackManager knockbackManager;
+
     void Start()
     {
         animator = GetComponent<Animator>();
+
         player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
         {
             playerHP = player.GetComponent<PlayerHP>();
+            knockbackManager = player.GetComponent<KnockbackManager>();
         }
         startPosition = transform.position;
         SetNewRoamPosition();
@@ -155,7 +159,13 @@ public class EnemyAI : MonoBehaviour
         if (attackTimer >= attackDelay)
         {
             animator.SetTrigger("Attack");
-            playerHP.TakeDMG(Mathf.RoundToInt(attackDamage));
+            playerHP.TakeDMG(Mathf.RoundToInt(attackDamage), this.gameObject);
+
+            if (knockbackManager != null)
+            {
+                knockbackManager.PlayFeedback(gameObject);
+            }
+
             attackTimer = 0f;
         }
 
