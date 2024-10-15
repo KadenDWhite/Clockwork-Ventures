@@ -16,12 +16,11 @@ namespace SuperPupSystems.Helper
         {
             if (timer == null)
             {
-                Debug.LogError("GameObject " + gameObject.name + " field timer is equal to null");
+                Debug.LogError("Player, your " + gameObject.name + " is up!");
             }
             StartCountDownTimer();
         }
 
-        // Update is called once per frame
         void Update()
         {
             text.text = textHeader + Mathf.Ceil(time);

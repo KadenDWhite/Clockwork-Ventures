@@ -1,13 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro; // Import TextMeshPro namespace
+using TMPro;
+using UnityEngine.UI; // Include this for UI components
 
 public class PlayerHP : MonoBehaviour
 {
     public Animator animator;
-    public SpriteRenderer spriteRenderer;
-
+    public Image healthBarImage; // Use Image instead of SpriteRenderer for UI health bar
     public TextMeshProUGUI healthText;
     public KnockbackManager knockbackManager;
 
@@ -15,25 +15,40 @@ public class PlayerHP : MonoBehaviour
     public int currentHP;
     public GameObject death;
     public PauseMenu pauseMenuUI;
+    public PlayerMovement playerMovement;
+    public PlayerAttack playerAttack;
+    public WeaponManager weaponManager;
 
     public Sprite[] healthSprites; // Array for health bar sprites (6 in total)
+    public SuperPupSystems.Helper.Timer timer;
+    public GameObject timeText;
+
+    private bool isDead = false;
 
     void Start()
     {
         currentHP = maxHP;
-        UpdateHealthBar(); // Initialize the correct sprite based on starting health
+        UpdateHealthBar();
+
+        if (timer != null)
+        {
+            timer.timeout.AddListener(TimerRanOut);
+        }
     }
 
     public void TakeDMG(int dmg, GameObject attacker)
     {
+        if (isDead) return;
+
         currentHP -= dmg;
-        currentHP = Mathf.Clamp(currentHP, 0, maxHP); // Ensure HP doesn't go below 0 or above maxHP
+        currentHP = Mathf.Clamp(currentHP, 0, maxHP); // Ensures HP doesn't go below 0 or above maxHP
 
         animator.SetTrigger("Hurt");
-        UpdateHealthBar(); // Update the health bar sprite after taking damage
-        UpdateHealthText(); // Update health text display
+        UpdateHealthBar();
+        UpdateHealthText();
 
-        if (knockbackManager != null)
+        // Only apply knockback if the player is not dead
+        if (knockbackManager != null && currentHP > 0)
         {
             knockbackManager.PlayFeedback(attacker);
         }
@@ -52,27 +67,27 @@ public class PlayerHP : MonoBehaviour
         // Choose the correct sprite based on the health percentage
         if (healthPercentage <= 0)
         {
-            spriteRenderer.sprite = healthSprites[0]; // 0% health
+            healthBarImage.sprite = healthSprites[0]; // 0% health
         }
         else if (healthPercentage <= 0.2f)
         {
-            spriteRenderer.sprite = healthSprites[1]; // 20% health
+            healthBarImage.sprite = healthSprites[1]; // 20% health
         }
         else if (healthPercentage <= 0.4f)
         {
-            spriteRenderer.sprite = healthSprites[2]; // 40% health
+            healthBarImage.sprite = healthSprites[2]; // 40% health
         }
         else if (healthPercentage <= 0.6f)
         {
-            spriteRenderer.sprite = healthSprites[3]; // 60% health
+            healthBarImage.sprite = healthSprites[3]; // 60% health
         }
         else if (healthPercentage <= 0.8f)
         {
-            spriteRenderer.sprite = healthSprites[4]; // 80% health
+            healthBarImage.sprite = healthSprites[4]; // 80% health
         }
         else
         {
-            spriteRenderer.sprite = healthSprites[5]; // 100% health
+            healthBarImage.sprite = healthSprites[5]; // 100% health
         }
     }
 
@@ -80,20 +95,49 @@ public class PlayerHP : MonoBehaviour
     {
         if (healthText != null)
         {
-            healthText.text = "" + currentHP.ToString(); // Update the text display with current HP
+            healthText.text = "" + currentHP.ToString();
         }
     }
 
     void Die()
     {
         Debug.Log("You died!");
+        isDead = true; // Set the player as dead
 
+        // Set the death animation trigger
         animator.SetBool("IsDead", true);
-        GetComponent<Collider2D>().enabled = false;
 
-        // Disable the entire player object when the player dies
-        gameObject.SetActive(false); // Disable the player game object
-        pauseMenuUI.enabled = false;
+        DisablePlayerComponents();
+
+        StartCoroutine(HandleDeath());
+    }
+
+    // Method to disable PlayerMovement, PlayerAttack, WeaponManager, and KnockbackManager scripts
+    void DisablePlayerComponents()
+    {
+        if (playerMovement != null) playerMovement.enabled = false;
+        if (playerAttack != null) playerAttack.enabled = false;
+        if (weaponManager != null) weaponManager.enabled = false;
+        if (knockbackManager != null) knockbackManager.enabled = false; // Disable knockback manager
+        if (pauseMenuUI != null) pauseMenuUI.enabled = false;
+        timeText.SetActive(false);
+    }
+
+    // Coroutine to handle the delay before showing the death screen
+    IEnumerator HandleDeath()
+    {
+        float deathAnimLength = animator.GetCurrentAnimatorStateInfo(0).length;
+
+        // Wait for the duration of the death animation
+        yield return new WaitForSeconds(deathAnimLength + 1.0f);
+
         death.SetActive(true);
+    }
+
+    // Method to handle timer expiration causing player death
+    public void TimerRanOut()
+    {
+        // Deal 50 damage to the player without an attacker
+        TakeDMG(100, null);
     }
 }

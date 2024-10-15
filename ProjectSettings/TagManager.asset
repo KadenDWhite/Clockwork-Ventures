@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ground
   - HP
+  - Coin
   layers:
   - Default
   - TransparentFX
@@ -81,6 +82,9 @@ TagManager:
     locked: 0
   - name: Ground
     uniqueID: 2223532677
+    locked: 0
+  - name: Coin
+    uniqueID: 2866126781
     locked: 0
   - name: Death Zone
     uniqueID: 1050593269

@@ -52,6 +52,12 @@ public class PauseMenu : MonoBehaviour
         if (weaponManager != null) weaponManager.enabled = false;
     }
 
+    public void Replay()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
     public void LoadMenu()
     {
         Time.timeScale = 1f;
