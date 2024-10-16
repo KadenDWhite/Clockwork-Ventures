@@ -86,6 +86,9 @@ TagManager:
   - name: Coin
     uniqueID: 2866126781
     locked: 0
+  - name: Bubbles
+    uniqueID: 1220708671
+    locked: 0
   - name: Death Zone
     uniqueID: 1050593269
     locked: 0
