@@ -158,7 +158,13 @@ public class PlayerHP : MonoBehaviour
     // Method to handle timer expiration causing player death
     public void TimerRanOut()
     {
-        // Deal 100 damage to the player without an attacker
-        TakeDMG(100, null);
+        currentHP = 0;
+        UpdateHealthBar();
+        UpdateHealthText();
+
+        if (!isDead)
+        {
+            Die();
+        }
     }
 }

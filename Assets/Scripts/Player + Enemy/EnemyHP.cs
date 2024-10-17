@@ -5,10 +5,11 @@ using UnityEngine;
 public class EnemyHP : MonoBehaviour
 {
     public Animator animator;
-
     public int maxHP = 100;
     public int currentHP;
     public KnockbackManager knockbackManager;
+
+    public ChallengeManager challengeManager; // Reference to ChallengeManager
 
     void Start()
     {
@@ -32,7 +33,7 @@ public class EnemyHP : MonoBehaviour
         }
     }
 
-    void Die()
+   public void Die()
     {
         Debug.Log("Enemy died!");
 
@@ -40,7 +41,11 @@ public class EnemyHP : MonoBehaviour
 
         GetComponent<Collider2D>().enabled = false;
         this.enabled = false;
-    }
 
-   
+        // Notify the ChallengeManager that this enemy died
+        if (challengeManager != null)
+        {
+            challengeManager.EnemyKilled(); // Call the EnemyKilled method in ChallengeManager
+        }
+    }
 }
