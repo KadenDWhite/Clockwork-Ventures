@@ -25,10 +25,19 @@ public class PlayerHP : MonoBehaviour
 
     private bool isDead = false;
 
+    // Add reference for GameManager
+    private GameManager gameManager;
+
+    // Add AudioSource reference for background music or other sounds
+    public AudioSource backgroundMusicSource;
+
     void Start()
     {
         currentHP = maxHP;
         UpdateHealthBar();
+
+        // Get the GameManager component (assuming it's on the same GameObject or find it in the scene)
+        gameManager = FindObjectOfType<GameManager>();
 
         if (timer != null)
         {
@@ -109,6 +118,18 @@ public class PlayerHP : MonoBehaviour
 
         DisablePlayerComponents();
 
+        // Stop the background music or audio source if it's not null
+        if (backgroundMusicSource != null)
+        {
+            backgroundMusicSource.Stop();
+        }
+
+        // Call OnPlayerDeath from GameManager
+        if (gameManager != null)
+        {
+            gameManager.OnPlayerDeath();
+        }
+
         StartCoroutine(HandleDeath());
     }
 
@@ -137,7 +158,7 @@ public class PlayerHP : MonoBehaviour
     // Method to handle timer expiration causing player death
     public void TimerRanOut()
     {
-        // Deal 50 damage to the player without an attacker
+        // Deal 100 damage to the player without an attacker
         TakeDMG(100, null);
     }
 }
