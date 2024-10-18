@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 6608770332298041855}
   - component: {fileID: 8371710304644161611}
   - component: {fileID: 6129976102132263861}
-  - component: {fileID: 8593783581005463225}
   - component: {fileID: 6042455184898847412}
   - component: {fileID: 2177483983178137772}
   m_Layer: 8
@@ -174,31 +173,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 344d5643020ff3946b4c0053dc1aec7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 8593783581005463225}
+  animator: {fileID: 0}
   maxHP: 120
   currentHP: 0
   knockbackManager: {fileID: 2177483983178137772}
---- !u!95 &8593783581005463225
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1232530612939079504}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 89a91d25ba75ee5438ca113b9ca64352, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
+  challengeManager: {fileID: 0}
 --- !u!114 &6042455184898847412
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using UnityEngine.UI; // Include this for UI components
+using UnityEngine.UI;
 
 public class PlayerHP : MonoBehaviour
 {
@@ -23,6 +23,7 @@ public class PlayerHP : MonoBehaviour
     public SuperPupSystems.Helper.Timer timer;
     public GameObject timeText;
 
+    public AnimationClip deathAnimationClip;
     private bool isDead = false;
 
     // Add reference for GameManager
@@ -36,7 +37,6 @@ public class PlayerHP : MonoBehaviour
         currentHP = maxHP;
         UpdateHealthBar();
 
-        // Get the GameManager component (assuming it's on the same GameObject or find it in the scene)
         gameManager = FindObjectOfType<GameManager>();
 
         if (timer != null)
@@ -50,13 +50,12 @@ public class PlayerHP : MonoBehaviour
         if (isDead) return;
 
         currentHP -= dmg;
-        currentHP = Mathf.Clamp(currentHP, 0, maxHP); // Ensures HP doesn't go below 0 or above maxHP
+        currentHP = Mathf.Clamp(currentHP, 0, maxHP);
 
         animator.SetTrigger("Hurt");
         UpdateHealthBar();
         UpdateHealthText();
 
-        // Only apply knockback if the player is not dead
         if (knockbackManager != null && currentHP > 0)
         {
             knockbackManager.PlayFeedback(attacker);
@@ -113,23 +112,19 @@ public class PlayerHP : MonoBehaviour
         Debug.Log("You died!");
         isDead = true; // Set the player as dead
 
-        // Set the death animation trigger
-        animator.SetBool("IsDead", true);
-
-        DisablePlayerComponents();
-
         // Stop the background music or audio source if it's not null
         if (backgroundMusicSource != null)
         {
             backgroundMusicSource.Stop();
         }
 
-        // Call OnPlayerDeath from GameManager
-        if (gameManager != null)
+        // Play the death animation directly
+        if (animator != null && deathAnimationClip != null)
         {
-            gameManager.OnPlayerDeath();
+            animator.Play(deathAnimationClip.name); // Play the animation clip
         }
 
+        DisablePlayerComponents();
         StartCoroutine(HandleDeath());
     }
 
@@ -139,7 +134,7 @@ public class PlayerHP : MonoBehaviour
         if (playerMovement != null) playerMovement.enabled = false;
         if (playerAttack != null) playerAttack.enabled = false;
         if (weaponManager != null) weaponManager.enabled = false;
-        if (knockbackManager != null) knockbackManager.enabled = false; // Disable knockback manager
+        if (knockbackManager != null) knockbackManager.enabled = false;
         if (pauseMenuUI != null) pauseMenuUI.enabled = false;
         timeText.SetActive(false);
     }
@@ -151,11 +146,12 @@ public class PlayerHP : MonoBehaviour
 
         // Wait for the duration of the death animation
         yield return new WaitForSeconds(deathAnimLength + 1.0f);
+        Debug.Log("Death Animation Length: " + deathAnimLength);
 
+        Debug.Log("Activating death screen");
         death.SetActive(true);
     }
 
-    // Method to handle timer expiration causing player death
     public void TimerRanOut()
     {
         currentHP = 0;

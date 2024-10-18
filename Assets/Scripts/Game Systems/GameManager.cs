@@ -4,17 +4,19 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private TypewriterEffect2 typewriterEffect; // Reference to the TypewriterEffect2 script
-    [SerializeField] private GameObject deathScreen; // Reference to the Death Screen GameObject (parent)
+    [SerializeField] private TypewriterEffect2 typewriterEffect;
+    [SerializeField] private TypewriterEffect2 typewriterEffect2;
+    [SerializeField] private GameObject deathScreen; 
 
     private void Start()
     {
-        deathScreen.SetActive(false); // Ensure the Death Screen is inactive at the start
+        deathScreen.SetActive(false);
     }
 
     public void OnPlayerDeath()
     {
-        deathScreen.SetActive(true);  // Activate the entire Death Screen (which includes Death Text)
-        typewriterEffect.Run();  // Run the typewriter effect on the Death Text
+        deathScreen.SetActive(true);
+        typewriterEffect.Run();
+        typewriterEffect2.Run();
     }
 }

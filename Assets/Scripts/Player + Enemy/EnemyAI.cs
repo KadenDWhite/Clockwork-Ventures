@@ -6,7 +6,6 @@ public class EnemyAI : MonoBehaviour
 {
     public float speed = 2f;
     public float chaseRange = 5f;
-
     public float attackRange = 1f;
     public float attackDamage = 20;
     public float attackDelay = 1.5f;
@@ -158,12 +157,18 @@ public class EnemyAI : MonoBehaviour
     {
         if (attackTimer >= attackDelay)
         {
-            animator.SetTrigger("Attack");
-            playerHP.TakeDMG(Mathf.RoundToInt(attackDamage), this.gameObject);
-
-            if (knockbackManager != null)
+            if (animator.GetBool("isReady"))
             {
-                knockbackManager.PlayFeedback(gameObject);
+                // If ready state exists, trigger the preparation animation
+                animator.SetBool("isReady", true);
+
+                // Optionally, you can delay the attack here for some time (e.g., 0.5 seconds)
+                StartCoroutine(PrepareAttackCoroutine());
+            }
+            else
+            {
+                // Directly attack if the ready state is not required
+                PerformAttack();
             }
 
             attackTimer = 0f;
@@ -171,6 +176,26 @@ public class EnemyAI : MonoBehaviour
 
         animator.SetBool("isRunning", false);
         animator.SetBool("isAttacking", true);
+    }
+
+    // Coroutine to handle the preparation before the actual attack
+    private IEnumerator PrepareAttackCoroutine()
+    {
+        yield return new WaitForSeconds(0.5f); // Time for preparation animation
+
+        PerformAttack();
+    }
+
+    private void PerformAttack()
+    {
+        // Perform the actual attack
+        animator.SetTrigger("Attack");
+        playerHP.TakeDMG(Mathf.RoundToInt(attackDamage), this.gameObject);
+
+        if (knockbackManager != null)
+        {
+            knockbackManager.PlayFeedback(gameObject);
+        }
     }
 
     private void StopMovement()

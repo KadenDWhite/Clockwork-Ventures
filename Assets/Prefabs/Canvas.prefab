@@ -412,8 +412,8 @@ RectTransform:
   - {fileID: 8365303887656792174}
   - {fileID: 7876197590303834336}
   - {fileID: 7354324629367518725}
-  - {fileID: 457231305542532204}
   - {fileID: 4265212572035929761}
+  - {fileID: 457231305542532204}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -542,6 +542,7 @@ MonoBehaviour:
   playerMovement: {fileID: 0}
   playerAttack: {fileID: 0}
   weaponManager: {fileID: 0}
+  backgroundMusicSource: {fileID: 0}
 --- !u!114 &3339167189938688644
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -631,7 +632,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1325225985
-  m_SortingLayer: 18
+  m_SortingLayer: 19
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
   m_Color: {r: 0.28627452, g: 0.8784314, b: 0.85490197, a: 0.34901962}
