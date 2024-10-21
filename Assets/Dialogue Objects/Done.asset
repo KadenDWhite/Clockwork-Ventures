@@ -17,9 +17,11 @@ MonoBehaviour:
 
     and is fighting against his
     will, but just ignore that!'
-  - 'Go ahead, kill em.
+  - 'Don''t worry though, he''s pratically harmless!
 
-    Once you do that, you can take our survey for the feedback!'
+    I gave him a dull kitchen
+    knife to protect himself.'
+  - Now go on, kill that weakling.
   reponses:
   - responseText: Okay
     dialogueObject: {fileID: 11400000, guid: 2d4b80e81cb601f439eb9c5e4dd060da, type: 2}

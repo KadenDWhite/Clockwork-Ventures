@@ -10495,7 +10495,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4546964799040204884, guid: 01f41760f7ce1694780289e3e13ce95e, type: 3}
       propertyPath: attackRate
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5363477668987795962, guid: 01f41760f7ce1694780289e3e13ce95e, type: 3}
       propertyPath: death
