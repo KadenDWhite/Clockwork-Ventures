@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Bye
   m_EditorClassIdentifier: 
   dialogue:
-  - Have you defeated him? If not kill em!
+  - "Have you defeated him? \nIf not kill em!"
   reponses: []
