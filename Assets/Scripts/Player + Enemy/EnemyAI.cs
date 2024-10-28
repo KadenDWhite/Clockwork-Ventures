@@ -50,8 +50,7 @@ public class EnemyAI : MonoBehaviour
     {
         if (isStunned)
         {
-            // If stunned, do not process movement or attacking
-            return;
+            return; // If stunned, do not process movement or attacking
         }
 
         if (player == null || playerHP == null || playerHP.currentHP <= 0)
@@ -159,15 +158,11 @@ public class EnemyAI : MonoBehaviour
         {
             if (animator.GetBool("isReady"))
             {
-                // If ready state exists, trigger the preparation animation
                 animator.SetBool("isReady", true);
-
-                // Optionally, you can delay the attack here for some time (e.g., 0.5 seconds)
                 StartCoroutine(PrepareAttackCoroutine());
             }
             else
             {
-                // Directly attack if the ready state is not required
                 PerformAttack();
             }
 
@@ -178,17 +173,14 @@ public class EnemyAI : MonoBehaviour
         animator.SetBool("isAttacking", true);
     }
 
-    // Coroutine to handle the preparation before the actual attack
     private IEnumerator PrepareAttackCoroutine()
     {
         yield return new WaitForSeconds(0.5f); // Time for preparation animation
-
         PerformAttack();
     }
 
     private void PerformAttack()
     {
-        // Perform the actual attack
         animator.SetTrigger("Attack");
         playerHP.TakeDMG(Mathf.RoundToInt(attackDamage), this.gameObject);
 
@@ -228,7 +220,6 @@ public class EnemyAI : MonoBehaviour
         StartCoroutine(StunCoroutine());
     }
 
-    // Visualize attack and chase distances in editor
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;

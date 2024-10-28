@@ -37,9 +37,18 @@ public class ChallengeManager : MonoBehaviour
 
     void OnChallengeComplete()
     {
-        ActivatePortal();         
-        timer.StopTimer();       
-        Debug.Log("Challenge complete! Timer stopped.");
+        ActivatePortal();
+
+        if (timer != null)
+        {
+            timer.StopTimer();       
+            Debug.Log("Challenge complete! Timer stopped.");
+        }
+        else
+        {
+            Debug.Log("Challenge complete! No timer to stop.");
+        }
+        
     }
 
     void ActivatePortal()

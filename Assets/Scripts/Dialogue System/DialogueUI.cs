@@ -8,7 +8,7 @@ public class DialogueUI : MonoBehaviour
     [SerializeField] private GameObject dialogueBox;
     [SerializeField] private TMP_Text textLabel;
 
-    public bool IsOpen {  get; private set; }
+    public bool IsOpen { get; private set; }
 
     private ResponseHandler responseHandler;
     private TypewriterEffect typewriterEffect;
@@ -17,7 +17,6 @@ public class DialogueUI : MonoBehaviour
     {
         typewriterEffect = GetComponent<TypewriterEffect>();
         responseHandler = GetComponent<ResponseHandler>();
-
         CloseDialogueBox();
     }
 
@@ -25,6 +24,9 @@ public class DialogueUI : MonoBehaviour
     {
         IsOpen = true;
         dialogueBox.SetActive(true);
+        PlayerMovement playerMovement = FindObjectOfType<PlayerMovement>();
+        playerMovement.FreezeMovement(true); // Freeze player movement
+
         StartCoroutine(StepThroughDialogue(dialogueObject));
     }
 
@@ -45,8 +47,6 @@ public class DialogueUI : MonoBehaviour
 
             if (i == dialogueObject.Dialogue.Length - 1 && dialogueObject.HasResponses) break;
 
-            yield return null;
-                
             yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.E));
         }
 
@@ -66,11 +66,11 @@ public class DialogueUI : MonoBehaviour
 
         while (typewriterEffect.IsRunning)
         {
-            yield return null;
+            yield return null; // Wait until the typewriter effect is done
 
             if (Input.GetKeyDown(KeyCode.E))
             {
-                typewriterEffect.Stop();
+                typewriterEffect.Stop(); // Optionally stop the effect if player presses E
             }
         }
     }
@@ -80,5 +80,8 @@ public class DialogueUI : MonoBehaviour
         IsOpen = false;
         dialogueBox.SetActive(false);
         textLabel.text = string.Empty;
+
+        PlayerMovement playerMovement = FindObjectOfType<PlayerMovement>();
+        playerMovement.FreezeMovement(false); // Resume player movement
     }
 }

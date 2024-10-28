@@ -27,53 +27,28 @@ public class PlayerMovement : MonoBehaviour
     private float currentSpeed;
     private bool isJumping; // Tracks if the player is currently jumping
     private bool isStunned = false; // Tracks if the player is stunned
-    private float stunDuration = 1f; // Duration of the stun effect
+    private bool isDialogueFrozen = false; // New flag for dialogue freeze
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        spriteRenderer = GetComponent<SpriteRenderer>(); // Initializes SpriteRenderer
-
-        // Optionally, apply a Physics Material 2D with zero friction here if not done in the editor
-        PhysicsMaterial2D noFriction = new PhysicsMaterial2D();
-        noFriction.friction = 0;
-        noFriction.bounciness = 0;
-        GetComponent<Collider2D>().sharedMaterial = noFriction;
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     void Update()
     {
-        if (isStunned)
-        {
-            // If stunned, do not process movement or jumping
-            return;
-        }
+        // Skip movement logic if dialogue is active
+        if (isDialogueFrozen) return;
 
-        if (dialogueUI.IsOpen) return;
-
-        // Gets horizontal input
+        // Movement logic
         move = Input.GetAxis("Horizontal");
 
         // Determines current speed (running or walking)
-        if (Input.GetKey(KeyCode.LeftShift))
-        {
-            currentSpeed = runSpeed; // Increase speed when Shift is held
-        }
-        else
-        {
-            currentSpeed = speed; // Use normal speed when walking
-        }
+        currentSpeed = Input.GetKey(KeyCode.LeftShift) ? runSpeed : speed;
 
         // Set the "isRunning" parameter based on any movement input
-        if (Mathf.Abs(move) > 0)
-        {
-            animator.SetBool("isRunning", true); // Play running animation when moving
-        }
-        else
-        {
-            animator.SetBool("isRunning", false); // Switch to idle animation when not moving
-        }
+        animator.SetBool("isRunning", Mathf.Abs(move) > 0);
 
         // Set velocity parameters for smooth transitions
         animator.SetFloat("xVelocity", Mathf.Abs(move) * currentSpeed);
@@ -91,6 +66,11 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    public void FreezeMovement(bool freeze)
+    {
+        isDialogueFrozen = freeze; // Freeze or unfreeze player movement
+    }
+
     private void HandleJumping()
     {
         // Check if the player is grounded
@@ -98,26 +78,24 @@ public class PlayerMovement : MonoBehaviour
 
         if (isGrounded && !isJumping)
         {
-            animator.SetBool("isJumping", false); // Stop jump animation when grounded
+            animator.SetBool("isJumping", false);
         }
 
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             rb.AddForce(new Vector2(rb.velocity.x, jump * 10));
-            isJumping = true; // Start the jump
-            animator.SetBool("isJumping", true); // Trigger jump animation
+            isJumping = true;
+            animator.SetBool("isJumping", true);
         }
 
-        // Update the jump state once player is in the air
         if (isJumping && rb.velocity.y <= 0)
         {
-            isJumping = false; // Player is falling down, so stop jumping
+            isJumping = false;
         }
     }
 
     private bool IsGrounded()
     {
-        // Checking if the player is grounded
         return Physics2D.BoxCast(transform.position, boxSize, 0, Vector2.down, castDistance, groundLayer);
     }
 
@@ -139,18 +117,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!isStunned)
+        if (!isDialogueFrozen && !isStunned)
         {
-            // Applies the movement with the current speed in FixedUpdate
             rb.velocity = new Vector2(move * currentSpeed, rb.velocity.y);
-            animator.SetFloat("xVelocity", Mathf.Abs(rb.velocity.x));
-            animator.SetFloat("yVelocity", rb.velocity.y);
         }
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawWireCube(transform.position - transform.up * castDistance, boxSize);
     }
 
     public void TakeDamage(int damage)
@@ -163,7 +133,7 @@ public class PlayerMovement : MonoBehaviour
     private IEnumerator StunCoroutine()
     {
         isStunned = true;
-        yield return new WaitForSeconds(stunDuration);
+        yield return new WaitForSeconds(1f); // Duration of the stun
         isStunned = false;
     }
 }

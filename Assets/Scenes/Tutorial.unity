@@ -3241,6 +3241,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3564588106500477178, guid: 4693bb5e1e7df7a47a5b68ba289ef3e6, type: 3}
   m_PrefabInstance: {fileID: 1381217221}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1381217224 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7411671637733003068, guid: 4693bb5e1e7df7a47a5b68ba289ef3e6, type: 3}
+  m_PrefabInstance: {fileID: 1381217221}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1381217223}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d939eca6762b5544f82b4f6de3a734a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1389985181
 GameObject:
   m_ObjectHideFlags: 0
@@ -4972,9 +4983,29 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 9761329828295608, guid: ebda6754a0a0f7541a96f3c1666b9705, type: 3}
+      propertyPath: m_Size.x
+      value: 1.826795
+      objectReference: {fileID: 0}
+    - target: {fileID: 9761329828295608, guid: ebda6754a0a0f7541a96f3c1666b9705, type: 3}
+      propertyPath: m_Size.y
+      value: 2.5414376
+      objectReference: {fileID: 0}
+    - target: {fileID: 9761329828295608, guid: ebda6754a0a0f7541a96f3c1666b9705, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.17693871
+      objectReference: {fileID: 0}
+    - target: {fileID: 9761329828295608, guid: ebda6754a0a0f7541a96f3c1666b9705, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.8974848
+      objectReference: {fileID: 0}
     - target: {fileID: 1688518367430588543, guid: ebda6754a0a0f7541a96f3c1666b9705, type: 3}
       propertyPath: speed
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1688518367430588543, guid: ebda6754a0a0f7541a96f3c1666b9705, type: 3}
+      propertyPath: attackDelay
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1688518367430588543, guid: ebda6754a0a0f7541a96f3c1666b9705, type: 3}
       propertyPath: attackDamage
@@ -4992,6 +5023,14 @@ PrefabInstance:
       propertyPath: maxHP
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 3473125147232940594, guid: ebda6754a0a0f7541a96f3c1666b9705, type: 3}
+      propertyPath: deathAnimName
+      value: Goblin(Death)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3473125147232940594, guid: ebda6754a0a0f7541a96f3c1666b9705, type: 3}
+      propertyPath: challengeManager
+      value: 
+      objectReference: {fileID: 1381217224}
     - target: {fileID: 4993908460348934248, guid: ebda6754a0a0f7541a96f3c1666b9705, type: 3}
       propertyPath: strength
       value: 12
@@ -5034,6 +5073,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8479649608210448790, guid: ebda6754a0a0f7541a96f3c1666b9705, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8930608821318221106, guid: ebda6754a0a0f7541a96f3c1666b9705, type: 3}
+      propertyPath: m_BodyType
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -5116,11 +5159,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1037333291963808890, guid: e7baf4aaba6f96b4fa461fa534c043e0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 60
+      value: 59.93
       objectReference: {fileID: 0}
     - target: {fileID: 1037333291963808890, guid: e7baf4aaba6f96b4fa461fa534c043e0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -17.1
+      value: -17.36
       objectReference: {fileID: 0}
     - target: {fileID: 1037333291963808890, guid: e7baf4aaba6f96b4fa461fa534c043e0, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5157,14 +5200,6 @@ PrefabInstance:
     - target: {fileID: 6726483607620596839, guid: e7baf4aaba6f96b4fa461fa534c043e0, type: 3}
       propertyPath: m_Name
       value: Portal
-      objectReference: {fileID: 0}
-    - target: {fileID: 7057684988805378550, guid: e7baf4aaba6f96b4fa461fa534c043e0, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7057684988805378550, guid: e7baf4aaba6f96b4fa461fa534c043e0, type: 3}
-      propertyPath: m_UsedByEffector
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5753,6 +5788,10 @@ PrefabInstance:
       propertyPath: dialogueUI
       value: 
       objectReference: {fileID: 1671334125}
+    - target: {fileID: 7540666685072361774, guid: 01f41760f7ce1694780289e3e13ce95e, type: 3}
+      propertyPath: delay
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7540666685072361774, guid: 01f41760f7ce1694780289e3e13ce95e, type: 3}
       propertyPath: strength
       value: 2

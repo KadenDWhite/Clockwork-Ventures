@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4152010694406287974}
   - component: {fileID: 6608770332298041855}
   - component: {fileID: 8371710304644161611}
+  - component: {fileID: 2839980881123630256}
   - component: {fileID: 6129976102132263861}
   - component: {fileID: 6042455184898847412}
   - component: {fileID: 2177483983178137772}
@@ -76,7 +77,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 685440995
-  m_SortingLayer: 20
+  m_SortingLayer: 21
   m_SortingOrder: 0
   m_Sprite: {fileID: -971338412, guid: 4fc1ca6d1ce6eb246862fae38f6259ae, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -101,7 +102,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 1000
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -161,6 +162,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.6350982, y: 1.7872195}
   m_EdgeRadius: 0
+--- !u!95 &2839980881123630256
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1232530612939079504}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 97df58f66526999409c6adedbefc2330, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &6129976102132263861
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -173,11 +195,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 344d5643020ff3946b4c0053dc1aec7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
+  animator: {fileID: 2839980881123630256}
   maxHP: 120
   currentHP: 0
   knockbackManager: {fileID: 2177483983178137772}
   challengeManager: {fileID: 0}
+  deathAnimName: Hobgoblin(death)
 --- !u!114 &6042455184898847412
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -190,12 +213,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf25d56f738db014db0b68d0fcaebe2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
-  chaseRange: 4.54
-  attackRange: 3.31
+  speed: 3
+  chaseRange: 8.5
+  attackRange: 1.9
   attackDamage: 20
   attackDelay: 2
-  roamRadius: 7
+  roamRadius: 10
   roamDelay: 3
 --- !u!114 &2177483983178137772
 MonoBehaviour:
@@ -210,7 +233,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb2d: {fileID: 6608770332298041855}
-  strength: 12
+  strength: 1000
   delay: 0.5
   OnBegin:
     m_PersistentCalls:
