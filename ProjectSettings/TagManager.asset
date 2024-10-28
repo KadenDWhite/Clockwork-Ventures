@@ -20,7 +20,7 @@ TagManager:
   - Enemies
   - Test
   - HP
-  - 
+  - Portal
   - 
   - 
   - 
@@ -98,6 +98,9 @@ TagManager:
     locked: 0
   - name: TutorialNPC
     uniqueID: 3036499513
+    locked: 0
+  - name: Portal
+    uniqueID: 2424575511
     locked: 0
   - name: QR Code
     uniqueID: 2969741311
