@@ -26,6 +26,12 @@ MonoBehaviour:
   - "For starters, you already know how to move around using WSAD. \n\nPressing space
     will let ya jump."
   - "By pressing Q, you'll draw/sheathe your weapon. \n\nClick for combat."
+  - 'Oh, that''s right I forgot! You also should have a shield.
+
+
+    By pressing
+    F it''ll activate!'
+  - You'll have a 10 second limit, and a 5 second delay.
   - 'Now that you''ve learned all of this...
 
 

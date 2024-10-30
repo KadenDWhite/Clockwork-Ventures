@@ -5035,6 +5035,14 @@ PrefabInstance:
       propertyPath: strength
       value: 12
       objectReference: {fileID: 0}
+    - target: {fileID: 4993908460348934248, guid: ebda6754a0a0f7541a96f3c1666b9705, type: 3}
+      propertyPath: OnDone.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4993908460348934248, guid: ebda6754a0a0f7541a96f3c1666b9705, type: 3}
+      propertyPath: OnDone.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8479649608210448790, guid: ebda6754a0a0f7541a96f3c1666b9705, type: 3}
       propertyPath: m_LocalPosition.x
       value: 54.7
@@ -5757,6 +5765,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1791681672}
     - target: {fileID: 5363477668987795962, guid: 01f41760f7ce1694780289e3e13ce95e, type: 3}
+      propertyPath: shield
+      value: 
+      objectReference: {fileID: 5080342236743943173}
+    - target: {fileID: 5363477668987795962, guid: 01f41760f7ce1694780289e3e13ce95e, type: 3}
       propertyPath: healthText
       value: 
       objectReference: {fileID: 1811008461}
@@ -5781,6 +5793,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1271117662}
     - target: {fileID: 5363477668987795962, guid: 01f41760f7ce1694780289e3e13ce95e, type: 3}
+      propertyPath: deathAnimationClip
+      value: 
+      objectReference: {fileID: 7400000, guid: 44dad96c161ace2458c23067b18d03a9, type: 2}
+    - target: {fileID: 5363477668987795962, guid: 01f41760f7ce1694780289e3e13ce95e, type: 3}
       propertyPath: backgroundMusicSource
       value: 
       objectReference: {fileID: 267865100}
@@ -5790,7 +5806,7 @@ PrefabInstance:
       objectReference: {fileID: 1671334125}
     - target: {fileID: 7540666685072361774, guid: 01f41760f7ce1694780289e3e13ce95e, type: 3}
       propertyPath: delay
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7540666685072361774, guid: 01f41760f7ce1694780289e3e13ce95e, type: 3}
       propertyPath: strength
@@ -5801,6 +5817,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 01f41760f7ce1694780289e3e13ce95e, type: 3}
+--- !u!114 &5080342236743943173 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4556919989713002145, guid: 01f41760f7ce1694780289e3e13ce95e, type: 3}
+  m_PrefabInstance: {fileID: 5080342236743943172}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cbf7613209cd5f45b657ae8e6f4450c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &5468803144868043386 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5056716468385524514, guid: 97622648c970d834c83a79a8c8e51755, type: 3}

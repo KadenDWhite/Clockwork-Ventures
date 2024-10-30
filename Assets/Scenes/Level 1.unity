@@ -10380,6 +10380,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 377442579}
     - target: {fileID: 5363477668987795962, guid: 01f41760f7ce1694780289e3e13ce95e, type: 3}
+      propertyPath: shield
+      value: 
+      objectReference: {fileID: 2021025632}
+    - target: {fileID: 5363477668987795962, guid: 01f41760f7ce1694780289e3e13ce95e, type: 3}
       propertyPath: timeText
       value: 
       objectReference: {fileID: 377442576}
@@ -10488,6 +10492,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 01f41760f7ce1694780289e3e13ce95e, type: 3}
+--- !u!114 &2021025632 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4556919989713002145, guid: 01f41760f7ce1694780289e3e13ce95e, type: 3}
+  m_PrefabInstance: {fileID: 2021025631}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cbf7613209cd5f45b657ae8e6f4450c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2030350857
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -6,31 +6,62 @@ using UnityEngine.UI;
 
 public class PlayerHP : MonoBehaviour
 {
+    [Tooltip("Animator component to control the player's animations.")]
     public Animator animator;
-    public Image healthBarImage; // Use Image instead of SpriteRenderer for UI health bar
+
+    [Tooltip("UI element representing the player's health bar.")]
+    public Image healthBarImage;
+
+    [Tooltip("Text element to display the player's current health.")]
     public TextMeshProUGUI healthText;
+
+    [Tooltip("Reference to the KnockbackManager to apply knockback effects when damaged.")]
     public KnockbackManager knockbackManager;
 
+    [Tooltip("The maximum health points the player can have.")]
     public int maxHP = 100;
+
+    [Tooltip("The player's current health points.")]
     public int currentHP;
+
+    [Tooltip("Game object representing the death screen.")]
     public GameObject death;
+
+    [Tooltip("Reference to the pause menu UI for managing the game state when paused.")]
     public PauseMenu pauseMenuUI;
+
+    [Tooltip("Reference to the PlayerMovement script for controlling player movement.")]
     public PlayerMovement playerMovement;
+
+    [Tooltip("Reference to the PlayerAttack script for handling player attacks.")]
     public PlayerAttack playerAttack;
+
+    [Tooltip("Reference to the WeaponManager script for handling weapon actions.")]
     public WeaponManager weaponManager;
 
-    public Sprite[] healthSprites; // Array for health bar sprites (6 in total)
+    [Tooltip("Array of sprites representing different health levels for the health bar.")]
+    public Sprite[] healthSprites;
+
+    [Tooltip("Timer used to track specific time-related events in the game.")]
     public SuperPupSystems.Helper.Timer timer;
+
+    [Tooltip("UI element for displaying time remaining.")]
     public GameObject timeText;
 
+    [Tooltip("Animation clip to play when the player dies.")]
     public AnimationClip deathAnimationClip;
+
+    [Tooltip("Indicates whether the player is currently dead.")]
     private bool isDead = false;
 
-    // Add reference for GameManager
+    [Tooltip("Reference to the GameManager for controlling game-related state and logic.")]
     private GameManager gameManager;
 
-    // Add AudioSource reference for background music or other sounds
+    [Tooltip("Audio source for playing background music or sound effects.")]
     public AudioSource backgroundMusicSource;
+
+    [Tooltip("Reference to the Shield component for checking if the shield is active.")]
+    public Shield shield;
 
     void Start()
     {
@@ -45,9 +76,14 @@ public class PlayerHP : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Applies damage to the player. If the shield is active or the player is dead, damage is not applied.
+    /// </summary>
+    /// <param name="dmg">Amount of damage to apply.</param>
+    /// <param name="attacker">The game object causing the damage.</param>
     public void TakeDMG(int dmg, GameObject attacker)
     {
-        if (isDead) return;
+        if (isDead || (shield != null && shield.IsShieldActive())) return;
 
         currentHP -= dmg;
         currentHP = Mathf.Clamp(currentHP, 0, maxHP);
@@ -67,12 +103,13 @@ public class PlayerHP : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Updates the health bar image based on the player's current health percentage.
+    /// </summary>
     void UpdateHealthBar()
     {
-        // Calculate the percentage of health remaining
         float healthPercentage = (float)currentHP / maxHP;
 
-        // Choose the correct sprite based on the health percentage
         if (healthPercentage <= 0)
         {
             healthBarImage.sprite = healthSprites[0]; // 0% health
@@ -99,6 +136,9 @@ public class PlayerHP : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Updates the health text display to show the player's current health points.
+    /// </summary>
     void UpdateHealthText()
     {
         if (healthText != null)
@@ -107,28 +147,31 @@ public class PlayerHP : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Handles the player's death, including animations, UI updates, and disabling certain components.
+    /// </summary>
     void Die()
     {
         Debug.Log("You died!");
-        isDead = true; // Set the player as dead
+        isDead = true;
 
-        // Stop the background music or audio source if it's not null
         if (backgroundMusicSource != null)
         {
             backgroundMusicSource.Stop();
         }
 
-        // Play the death animation directly
         if (animator != null && deathAnimationClip != null)
         {
-            animator.Play(deathAnimationClip.name); // Play the animation clip
+            animator.Play(deathAnimationClip.name);
         }
 
         DisablePlayerComponents();
         StartCoroutine(HandleDeath());
     }
 
-    // Method to disable PlayerMovement, PlayerAttack, WeaponManager, and KnockbackManager scripts
+    /// <summary>
+    /// Disables player-related components upon death.
+    /// </summary>
     void DisablePlayerComponents()
     {
         if (playerMovement != null) playerMovement.enabled = false;
@@ -139,12 +182,13 @@ public class PlayerHP : MonoBehaviour
         timeText.SetActive(false);
     }
 
-    // Coroutine to handle the delay before showing the death screen
+    /// <summary>
+    /// Coroutine to manage the delay before activating the death screen UI.
+    /// </summary>
     IEnumerator HandleDeath()
     {
         float deathAnimLength = animator.GetCurrentAnimatorStateInfo(0).length;
 
-        // Wait for the duration of the death animation
         yield return new WaitForSeconds(deathAnimLength + 1.0f);
         Debug.Log("Death Animation Length: " + deathAnimLength);
 
@@ -152,6 +196,9 @@ public class PlayerHP : MonoBehaviour
         death.SetActive(true);
     }
 
+    /// <summary>
+    /// Method triggered when the timer runs out, resulting in player death.
+    /// </summary>
     public void TimerRanOut()
     {
         currentHP = 0;
