@@ -8,6 +8,7 @@ TagManager:
   - HP
   - Coin
   - Enemy
+  - Shield
   layers:
   - Default
   - TransparentFX
@@ -21,7 +22,7 @@ TagManager:
   - Test
   - HP
   - Portal
-  - 
+  - Shield
   - 
   - 
   - 
@@ -113,6 +114,9 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 3441822855
+    locked: 0
+  - name: Shield
+    uniqueID: 2586446305
     locked: 0
   - name: HP
     uniqueID: 2963608679
