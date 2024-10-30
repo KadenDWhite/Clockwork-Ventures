@@ -490,7 +490,10 @@ MonoBehaviour:
     -> (L-Shift)
 
 
-    Interact -> (E)'
+    Interact -> (E)
+
+
+    Shield -> (F)'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b12b1028c75c6324a9e0ba58b7e28ea5, type: 2}
   m_sharedMaterial: {fileID: 3577595919341427826, guid: b12b1028c75c6324a9e0ba58b7e28ea5, type: 2}

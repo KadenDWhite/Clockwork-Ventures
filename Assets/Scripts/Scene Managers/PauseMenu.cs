@@ -11,6 +11,7 @@ public class PauseMenu : MonoBehaviour
     public PlayerMovement playerMovement;
     public PlayerAttack playerAttack;
     public WeaponManager weaponManager;
+    public Shield shield;
 
     // Add an AudioSource reference for the background music
     public AudioSource backgroundMusicSource;
@@ -47,6 +48,7 @@ public class PauseMenu : MonoBehaviour
         if (playerMovement != null) playerMovement.enabled = true;
         if (playerAttack != null) playerAttack.enabled = true;
         if (weaponManager != null) weaponManager.enabled = true;
+        if (shield != null) shield.enabled = true;
     }
 
     void Pause()
@@ -65,6 +67,7 @@ public class PauseMenu : MonoBehaviour
         if (playerMovement != null) playerMovement.enabled = false;
         if (playerAttack != null) playerAttack.enabled = false;
         if (weaponManager != null) weaponManager.enabled = false;
+        if (shield != null) shield.enabled = false;
     }
 
     public void Replay()
