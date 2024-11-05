@@ -5,34 +5,41 @@ using TMPro;
 
 public class ChallengeManager : MonoBehaviour
 {
-    public GameObject portal;         
-    public TextMeshProUGUI killText;  
+    public GameObject portal;
+    public TextMeshProUGUI killText;
     public SuperPupSystems.Helper.Timer timer;
 
-    private int totalEnemies = 1;     
-    private int enemyKilledCount = 0; 
+    private int totalEnemies = 1;
+    private int enemyKilledCount = 0;
 
     void Start()
     {
-        portal.SetActive(false);  
-        UpdateKillText();         
+        if (portal != null)
+        {
+            portal.SetActive(false);
+        }
+
+        UpdateKillText();
     }
 
     // Method to be called by the EnemyHP script when an enemy is killed
     public void EnemyKilled()
     {
-        enemyKilledCount++;      
-        UpdateKillText();        
+        enemyKilledCount++;
+        UpdateKillText();
 
         if (enemyKilledCount >= totalEnemies)
         {
-            OnChallengeComplete();  
+            OnChallengeComplete();
         }
     }
 
     void UpdateKillText()
     {
-        killText.text = enemyKilledCount + "/" + totalEnemies + " killed";  
+        if (killText != null)
+        {
+            killText.text = enemyKilledCount + "/" + totalEnemies + " killed";
+        }
     }
 
     void OnChallengeComplete()
@@ -41,18 +48,20 @@ public class ChallengeManager : MonoBehaviour
 
         if (timer != null)
         {
-            timer.StopTimer();       
+            timer.StopTimer();
             Debug.Log("Challenge complete! Timer stopped.");
         }
         else
         {
             Debug.Log("Challenge complete! No timer to stop.");
         }
-        
     }
 
     void ActivatePortal()
     {
-        portal.SetActive(true);
+        if (portal != null)
+        {
+            portal.SetActive(true);
+        }
     }
 }
