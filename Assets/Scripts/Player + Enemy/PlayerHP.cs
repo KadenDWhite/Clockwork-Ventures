@@ -70,6 +70,7 @@ public class PlayerHP : MonoBehaviour
 
         gameManager = FindObjectOfType<GameManager>();
 
+        // Add timer listener if timer is available
         if (timer != null)
         {
             timer.timeout.AddListener(TimerRanOut);
@@ -179,7 +180,11 @@ public class PlayerHP : MonoBehaviour
         if (weaponManager != null) weaponManager.enabled = false;
         if (knockbackManager != null) knockbackManager.enabled = false;
         if (pauseMenuUI != null) pauseMenuUI.enabled = false;
-        timeText.SetActive(false);
+
+        if (timeText != null)
+        {
+            timeText.SetActive(false);
+        }
     }
 
     /// <summary>
@@ -193,7 +198,10 @@ public class PlayerHP : MonoBehaviour
         Debug.Log("Death Animation Length: " + deathAnimLength);
 
         Debug.Log("Activating death screen");
-        death.SetActive(true);
+        if (death != null)
+        {
+            death.SetActive(true);
+        }
     }
 
     /// <summary>
