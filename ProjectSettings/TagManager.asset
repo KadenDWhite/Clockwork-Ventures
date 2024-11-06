@@ -97,6 +97,9 @@ TagManager:
   - name: Tiles_Decor
     uniqueID: 3230621267
     locked: 0
+  - name: Flag
+    uniqueID: 2216513575
+    locked: 0
   - name: TutorialNPC
     uniqueID: 3036499513
     locked: 0
