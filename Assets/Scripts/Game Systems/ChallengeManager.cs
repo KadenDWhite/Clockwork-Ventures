@@ -9,7 +9,7 @@ public class ChallengeManager : MonoBehaviour
     public TextMeshProUGUI killText;
     public SuperPupSystems.Helper.Timer timer;
 
-    private int totalEnemies = 1;
+    public int totalEnemies = 1;
     private int enemyKilledCount = 0;
 
     void Start()

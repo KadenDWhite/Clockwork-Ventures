@@ -32,7 +32,7 @@ public class SceneController : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (scene.name != "Main Menu" && scene.name != "Main Menu 2")
+        if (scene.name != "Main Menu" && scene.name != "Main Menu 2" && scene.name != "MM (Easy)" && scene.name != "MM (Normal)")
         {
             if (AudioManager.instance != null)
             {

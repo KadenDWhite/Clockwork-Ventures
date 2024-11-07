@@ -12,6 +12,7 @@ public class EnemyAI : MonoBehaviour
 
     public float roamRadius = 3f;
     public float roamDelay = 3f;
+    public float outOfRangeTime = 2f; // Time before enemy starts roaming again if the player is out of range
 
     private Animator animator;
     private GameObject player;
@@ -19,6 +20,7 @@ public class EnemyAI : MonoBehaviour
 
     private float attackTimer = 0f;
     private float roamTimer = 0f;
+    private float playerOutOfRangeTimer = 0f;
     private bool isRoaming = true;
     private bool isFacingRight = false;
 
@@ -32,6 +34,11 @@ public class EnemyAI : MonoBehaviour
 
     private KnockbackManager knockbackManager;
 
+    public float jumpForce = 5f; // Force of the jump
+    public float raycastDistance = 1f; // Distance to check for obstacles in front of the enemy
+
+    private Rigidbody2D rb;
+
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -43,6 +50,7 @@ public class EnemyAI : MonoBehaviour
             knockbackManager = player.GetComponent<KnockbackManager>();
         }
         startPosition = transform.position;
+        rb = GetComponent<Rigidbody2D>(); // Cache Rigidbody2D reference
         SetNewRoamPosition();
     }
 
@@ -53,10 +61,10 @@ public class EnemyAI : MonoBehaviour
             return; // If stunned, do not process movement or attacking
         }
 
-        if (player == null || playerHP == null || playerHP.currentHP <= 0)
+        if (player == null || playerHP == null || playerHP.IsDead()) // Check if player is dead
         {
             StopMovement();
-            return;
+            return; // Stop all behavior if the player is dead
         }
 
         float distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
@@ -64,17 +72,26 @@ public class EnemyAI : MonoBehaviour
         if (distanceToPlayer <= attackRange)
         {
             Attack();
+            playerOutOfRangeTimer = 0f; // Reset the timer when in range
         }
         else if (distanceToPlayer <= chaseRange)
         {
             ChasePlayer();
+            playerOutOfRangeTimer = 0f; // Reset the timer when in range
         }
         else
         {
-            Roam();
+            playerOutOfRangeTimer += Time.deltaTime;
+            if (playerOutOfRangeTimer >= outOfRangeTime)
+            {
+                Roam(); // Start roaming if the player has been out of range for the set time
+            }
         }
 
         attackTimer += Time.deltaTime;
+
+        // Check for obstacles and jump over them if necessary
+        CheckForObstacles();
     }
 
     private void ChasePlayer()
@@ -204,6 +221,26 @@ public class EnemyAI : MonoBehaviour
             Vector3 scale = transform.localScale;
             scale.x *= -1f;
             transform.localScale = scale;
+        }
+    }
+
+    private void CheckForObstacles()
+    {
+        // Cast a ray to detect obstacles in front of the enemy
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right, raycastDistance);
+        if (hit.collider != null && hit.collider.CompareTag("Obstacle"))
+        {
+            JumpOverObstacle();
+        }
+    }
+
+    private void JumpOverObstacle()
+    {
+        // Handle the jump logic without animation
+        if (rb != null)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, 0); // Reset vertical velocity first to avoid compound jumps
+            rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse); // Apply jump force to Rigidbody2D
         }
     }
 

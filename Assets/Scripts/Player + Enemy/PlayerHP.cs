@@ -1,30 +1,38 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
 public class PlayerHP : MonoBehaviour
 {
-    public Animator animator;
+    [Header("UI Components")]
     public Image healthBarImage;
     public TextMeshProUGUI healthText;
+
+    [Header("Player Components")]
+    public Animator animator;
     public KnockbackManager knockbackManager;
-    public int maxHP = 100;
-    public int currentHP;
-    public GameObject death;
-    public PauseMenu pauseMenuUI;
     public PlayerMovement playerMovement;
     public PlayerAttack playerAttack;
     public WeaponManager weaponManager;
-    public Sprite[] healthSprites;
-    public SuperPupSystems.Helper.Timer timer;
     public GameObject timeText;
-    public AnimationClip deathAnimationClip;
-    private bool isDead = false;
-    private GameManager gameManager;
-    public AudioSource backgroundMusicSource;
+    public PauseMenu pauseMenuUI;
+
+    [Header("Health and Shield")]
+    public int maxHP = 100;
+    public int currentHP;
+    public Sprite[] healthSprites;
     public Shield shield;
+
+    [Header("Audio and Effects")]
+    public AudioSource backgroundMusicSource;
+    public GameObject death;
+
+    [Header("Gameplay References")]
+    public SuperPupSystems.Helper.Timer timer;
+    private GameManager gameManager;
+
+    private bool isDead = false;
 
     void Start()
     {
@@ -38,61 +46,36 @@ public class PlayerHP : MonoBehaviour
         }
     }
 
-    public bool IsDead()
-    {
-        return isDead;
-    }
+    public bool IsDead() => isDead;
 
     public void TakeDMG(int dmg, GameObject attacker)
     {
+        // Early exit if player is already dead or shield is active
         if (isDead || (shield != null && shield.IsShieldActive())) return;
 
-        currentHP -= dmg;
-        currentHP = Mathf.Clamp(currentHP, 0, maxHP);
-
-        animator.SetTrigger("Hurt");
+        // Apply damage and clamp health
+        currentHP = Mathf.Clamp(currentHP - dmg, 0, maxHP);
         UpdateHealthBar();
         UpdateHealthText();
 
-        if (knockbackManager != null && currentHP > 0)
+        // Trigger hurt animation if player is still alive
+        if (currentHP > 0)
         {
-            knockbackManager.PlayFeedback(attacker);
+            animator.SetTrigger("Hurt");
+
+            // Apply knockback effect if applicable
+            knockbackManager?.PlayFeedback(attacker);
         }
 
-        if (currentHP <= 0)
-        {
-            Die();
-        }
+        // Check if health has reached zero to trigger death
+        if (currentHP <= 0) Die();
     }
 
     void UpdateHealthBar()
     {
         float healthPercentage = (float)currentHP / maxHP;
-
-        if (healthPercentage <= 0)
-        {
-            healthBarImage.sprite = healthSprites[0];
-        }
-        else if (healthPercentage <= 0.2f)
-        {
-            healthBarImage.sprite = healthSprites[1];
-        }
-        else if (healthPercentage <= 0.4f)
-        {
-            healthBarImage.sprite = healthSprites[2];
-        }
-        else if (healthPercentage <= 0.6f)
-        {
-            healthBarImage.sprite = healthSprites[3];
-        }
-        else if (healthPercentage <= 0.8f)
-        {
-            healthBarImage.sprite = healthSprites[4];
-        }
-        else
-        {
-            healthBarImage.sprite = healthSprites[5];
-        }
+        int spriteIndex = Mathf.Clamp((int)(healthPercentage * healthSprites.Length), 0, healthSprites.Length - 1);
+        healthBarImage.sprite = healthSprites[spriteIndex];
     }
 
     void UpdateHealthText()
@@ -105,20 +88,22 @@ public class PlayerHP : MonoBehaviour
 
     void Die()
     {
+        if (isDead) return;
+
         Debug.Log("You died!");
         isDead = true;
 
-        if (backgroundMusicSource != null)
-        {
-            backgroundMusicSource.Stop();
-        }
-
-        if (animator != null && deathAnimationClip != null)
-        {
-            animator.Play(deathAnimationClip.name);
-        }
+        animator.SetBool("IsDead", true);
+        animator.CrossFade("Death", 0.1f);
+        backgroundMusicSource?.Stop();
 
         DisablePlayerComponents();
+
+        if (death != null)
+        {
+            death.SetActive(true);
+        }
+
         StartCoroutine(HandleDeath());
     }
 
@@ -136,18 +121,31 @@ public class PlayerHP : MonoBehaviour
         }
     }
 
-    IEnumerator HandleDeath()
+    private IEnumerator HandleDeath()
     {
+        // Ensure the death screen is inactive at the start
+        if (death != null)
+        {
+            death.SetActive(false);
+        }
+
+        // Wait until the "Death" animation starts playing
+        yield return new WaitUntil(() => animator.GetCurrentAnimatorStateInfo(0).IsTag("Death"));
+
+        // Get the length of the death animation
         float deathAnimLength = animator.GetCurrentAnimatorStateInfo(0).length;
 
-        yield return new WaitForSeconds(deathAnimLength + 1.0f);
-        Debug.Log("Death Animation Length: " + deathAnimLength);
+        // Wait for the animation to finish before showing the death screen
+        yield return new WaitForSeconds(deathAnimLength);
 
-        Debug.Log("Activating death screen");
+        // After the death animation finishes, activate the death screen
         if (death != null)
         {
             death.SetActive(true);
         }
+
+        // Optionally, disable the player object if desired
+        gameObject.SetActive(false);
     }
 
     public void TimerRanOut()
