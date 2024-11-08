@@ -12137,6 +12137,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1635951223190904188, guid: e7baf4aaba6f96b4fa461fa534c043e0, type: 3}
+      propertyPath: sceneToLoad
+      value: Level 2 (Easy)
+      objectReference: {fileID: 0}
     - target: {fileID: 1898214682403293843, guid: e7baf4aaba6f96b4fa461fa534c043e0, type: 3}
       propertyPath: m_Sprite
       value: 

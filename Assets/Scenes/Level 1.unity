@@ -3905,6 +3905,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 989286336957660237, guid: d81ca46da6c1bcf4fb5c1ac9527f09fb, type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
+      objectReference: {fileID: 0}
     - target: {fileID: 2232779251235147686, guid: d81ca46da6c1bcf4fb5c1ac9527f09fb, type: 3}
       propertyPath: m_LocalScale.x
       value: 51.98162
