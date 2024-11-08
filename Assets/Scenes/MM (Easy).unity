@@ -663,10 +663,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe32611ab2eb9c0448a0b4e22cc57539, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scenesToLoad:
-  - {fileID: 102900000, guid: 33e2afa742968374aa387f43a54b367e, type: 3}
-  - {fileID: 102900000, guid: 11a5fbae9b47c2a4f9a0a44e9f46bb07, type: 3}
-  - {fileID: 102900000, guid: b0982be40d6e8564196807086a266bad, type: 3}
+  sceneNames:
+  - Level 1 (Easy)
+  - Platform (Easy)
+  - Level 2 (Easy)
 --- !u!1 &855633778
 GameObject:
   m_ObjectHideFlags: 0

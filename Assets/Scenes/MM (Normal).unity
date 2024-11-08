@@ -664,7 +664,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneNames:
-  - Main Menu 2
+  - Tutorial
+  - Level 1
+  - Level 2
 --- !u!1 &855633778
 GameObject:
   m_ObjectHideFlags: 0
