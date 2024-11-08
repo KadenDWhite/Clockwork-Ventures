@@ -359,8 +359,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 575733695}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: PreviousScene
-        m_Mode: 1
+        m_MethodName: LoadLevelByIndex
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -663,10 +663,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe32611ab2eb9c0448a0b4e22cc57539, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scenesToLoad:
-  - {fileID: 102900000, guid: 8c9cfa26abfee488c85f1582747f6a02, type: 3}
-  - {fileID: 102900000, guid: 3d2a7c64f6124d54891fa2b67b489399, type: 3}
-  - {fileID: 102900000, guid: 9555cd318c72ce949981e209bc3a811e, type: 3}
+  sceneNames:
+  - Main Menu 2
 --- !u!1 &855633778
 GameObject:
   m_ObjectHideFlags: 0
