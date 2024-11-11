@@ -485,6 +485,7 @@ GameObject:
   - component: {fileID: 967691023}
   - component: {fileID: 967691022}
   - component: {fileID: 967691021}
+  - component: {fileID: 967691025}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -578,6 +579,24 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &967691025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 967691020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8606666b77f119b409efc7516453c25b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1465855438}
+  goblin: {fileID: 2092100445}
+  screenLimitX: 1500
+  playerSpeed: 800
+  goblinSpeed: 1500
+  chaseSwitchInterval: 0.5
 --- !u!1 &1339635249
 GameObject:
   m_ObjectHideFlags: 0
@@ -681,7 +700,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -688, y: 65}
+  m_AnchoredPosition: {x: -570, y: 65}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &1465855439
@@ -778,7 +797,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 519, y: -32}
+  m_AnchoredPosition: {x: 408, y: -32}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &2092100446

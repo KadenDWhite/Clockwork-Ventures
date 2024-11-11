@@ -10954,6 +10954,10 @@ PrefabInstance:
       propertyPath: m_text
       value: 0/2 killed
       objectReference: {fileID: 0}
+    - target: {fileID: 2454699472542429605, guid: 4693bb5e1e7df7a47a5b68ba289ef3e6, type: 3}
+      propertyPath: m_text
+      value: 'Goblin(s):'
+      objectReference: {fileID: 0}
     - target: {fileID: 3564588106500477178, guid: 4693bb5e1e7df7a47a5b68ba289ef3e6, type: 3}
       propertyPath: m_Name
       value: Challenge
