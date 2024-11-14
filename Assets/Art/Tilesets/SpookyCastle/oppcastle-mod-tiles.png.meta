@@ -113,10 +113,10 @@ TextureImporter:
       name: oppcastle-mod-tiles_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 32
         y: 288
-        width: 64
-        height: 64
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -134,10 +134,10 @@ TextureImporter:
       name: oppcastle-mod-tiles_1
       rect:
         serializedVersion: 2
-        x: 64
+        x: 96
         y: 288
-        width: 64
-        height: 64
+        width: 32
+        height: 37
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -157,8 +157,8 @@ TextureImporter:
         serializedVersion: 2
         x: 128
         y: 288
-        width: 64
-        height: 64
+        width: 34
+        height: 37
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -178,8 +178,8 @@ TextureImporter:
         serializedVersion: 2
         x: 192
         y: 288
-        width: 64
-        height: 64
+        width: 32
+        height: 37
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -197,10 +197,10 @@ TextureImporter:
       name: oppcastle-mod-tiles_4
       rect:
         serializedVersion: 2
-        x: 256
-        y: 288
-        width: 64
-        height: 64
+        x: 280
+        y: 142
+        width: 20
+        height: 18
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -218,10 +218,10 @@ TextureImporter:
       name: oppcastle-mod-tiles_5
       rect:
         serializedVersion: 2
-        x: 320
-        y: 262
-        width: 64
-        height: 30
+        x: 351
+        y: 272
+        width: 33
+        height: 20
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -240,9 +240,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 384
-        y: 262
-        width: 64
-        height: 30
+        y: 279
+        width: 32
+        height: 13
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -260,10 +260,10 @@ TextureImporter:
       name: oppcastle-mod-tiles_7
       rect:
         serializedVersion: 2
-        x: 0
+        x: 36
         y: 224
-        width: 64
-        height: 64
+        width: 28
+        height: 33
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -281,10 +281,10 @@ TextureImporter:
       name: oppcastle-mod-tiles_8
       rect:
         serializedVersion: 2
-        x: 64
-        y: 224
-        width: 64
-        height: 64
+        x: 96
+        y: 257
+        width: 32
+        height: 31
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -304,8 +304,8 @@ TextureImporter:
         serializedVersion: 2
         x: 128
         y: 224
-        width: 64
-        height: 64
+        width: 33
+        height: 33
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -325,8 +325,8 @@ TextureImporter:
         serializedVersion: 2
         x: 192
         y: 224
-        width: 64
-        height: 64
+        width: 33
+        height: 31
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -344,10 +344,10 @@ TextureImporter:
       name: oppcastle-mod-tiles_11
       rect:
         serializedVersion: 2
-        x: 256
-        y: 224
-        width: 64
-        height: 64
+        x: 288
+        y: 258
+        width: 32
+        height: 30
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -365,10 +365,10 @@ TextureImporter:
       name: oppcastle-mod-tiles_12
       rect:
         serializedVersion: 2
-        x: 320
-        y: 224
-        width: 64
-        height: 37
+        x: 352
+        y: 244
+        width: 32
+        height: 17
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -387,9 +387,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 384
-        y: 224
+        y: 244
         width: 64
-        height: 37
+        height: 17
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -408,9 +408,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 128
-        y: 160
-        width: 64
-        height: 64
+        y: 192
+        width: 33
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -429,9 +429,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 192
-        y: 160
-        width: 64
-        height: 64
+        y: 192
+        width: 33
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -450,9 +450,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 256
-        y: 160
-        width: 64
-        height: 64
+        y: 192
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -471,9 +471,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 320
-        y: 160
+        y: 179
         width: 64
-        height: 64
+        height: 45
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -492,9 +492,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 384
-        y: 160
+        y: 179
         width: 64
-        height: 64
+        height: 45
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -512,10 +512,10 @@ TextureImporter:
       name: oppcastle-mod-tiles_19
       rect:
         serializedVersion: 2
-        x: 64
+        x: 128
         y: 96
-        width: 64
-        height: 64
+        width: 33
+        height: 31
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -534,9 +534,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 128
-        y: 96
-        width: 64
-        height: 64
+        y: 127
+        width: 33
+        height: 33
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -554,10 +554,10 @@ TextureImporter:
       name: oppcastle-mod-tiles_21
       rect:
         serializedVersion: 2
-        x: 256
-        y: 96
-        width: 64
-        height: 64
+        x: 161
+        y: 192
+        width: 31
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -576,9 +576,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 320
-        y: 96
+        y: 64
         width: 64
-        height: 64
+        height: 96
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -597,9 +597,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 384
-        y: 96
+        y: 64
         width: 64
-        height: 64
+        height: 96
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -617,10 +617,10 @@ TextureImporter:
       name: oppcastle-mod-tiles_24
       rect:
         serializedVersion: 2
-        x: 0
+        x: 32
         y: 32
-        width: 64
-        height: 64
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -638,10 +638,10 @@ TextureImporter:
       name: oppcastle-mod-tiles_25
       rect:
         serializedVersion: 2
-        x: 64
+        x: 96
         y: 32
-        width: 64
-        height: 64
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -660,9 +660,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 128
-        y: 32
-        width: 64
-        height: 64
+        y: 64
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -682,8 +682,8 @@ TextureImporter:
         serializedVersion: 2
         x: 192
         y: 32
-        width: 64
-        height: 64
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -702,9 +702,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 256
-        y: 32
+        y: 64
         width: 64
-        height: 64
+        height: 96
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -722,10 +722,10 @@ TextureImporter:
       name: oppcastle-mod-tiles_29
       rect:
         serializedVersion: 2
-        x: 320
-        y: 32
-        width: 64
-        height: 64
+        x: 225
+        y: 192
+        width: 31
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -743,10 +743,10 @@ TextureImporter:
       name: oppcastle-mod-tiles_30
       rect:
         serializedVersion: 2
-        x: 384
-        y: 32
-        width: 64
-        height: 64
+        x: 288
+        y: 224
+        width: 32
+        height: 34
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -764,10 +764,10 @@ TextureImporter:
       name: oppcastle-mod-tiles_31
       rect:
         serializedVersion: 2
-        x: 320
-        y: 293
-        width: 64
-        height: 31
+        x: 352
+        y: 304
+        width: 32
+        height: 20
       alignment: 9
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -785,10 +785,10 @@ TextureImporter:
       name: oppcastle-mod-tiles_32
       rect:
         serializedVersion: 2
-        x: 385
-        y: 293
+        x: 384
+        y: 304
         width: 64
-        height: 31
+        height: 20
       alignment: 9
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -798,6 +798,510 @@ TextureImporter:
       bones: []
       spriteID: dbfb37d2ae2f88140a73b6f22e178757
       internalID: -387911575
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: oppcastle-mod-tiles_33
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 257
+        width: 28
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 505589021c8a9444ab336071cabcf255
+      internalID: 1931906270
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: oppcastle-mod-tiles_34
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0eccb724bcda595478eacb3f19fc13dc
+      internalID: 1306999321
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: oppcastle-mod-tiles_35
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ffc99e025350c14484c4d8435bf90a6
+      internalID: -1541494947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: oppcastle-mod-tiles_36
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74a5870a096529f4abd0ff14149049b2
+      internalID: -574479504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: oppcastle-mod-tiles_37
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 68843110b763ed34a9d1576cd92f222c
+      internalID: -628021198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: oppcastle-mod-tiles_38
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 331301e8777d42f40b84f8429aa0d239
+      internalID: 1427141049
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: oppcastle-mod-tiles_39
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 288
+        width: 30
+        height: 37
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd28cb9243dfd694e89b7e9baac46676
+      internalID: 1566291227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: oppcastle-mod-tiles_40
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 298
+        width: 32
+        height: 45
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 727e206e5fd22a445a7b1355aec005e0
+      internalID: 1770808349
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: oppcastle-mod-tiles_41
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 288
+        width: 32
+        height: 37
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5906d0fae928fcc4e9770260b88ad8ed
+      internalID: 90377650
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: oppcastle-mod-tiles_42
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 224
+        width: 32
+        height: 85
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f5b7484d37348b149ad5f725a52d794b
+      internalID: 359831215
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: oppcastle-mod-tiles_43
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 255
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce610911daba65441b505d548c130593
+      internalID: 1239633396
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: oppcastle-mod-tiles_44
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 142
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6ba15e826aed814eb66c6c17e3844f2
+      internalID: -1305771713
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: oppcastle-mod-tiles_45
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 224
+        width: 32
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 38616b70b28a701458078a862db3a612
+      internalID: -105860585
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: oppcastle-mod-tiles_46
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 257
+        width: 33
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c6e65dffa74b644295350d636454b6c
+      internalID: 1624991946
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: oppcastle-mod-tiles_47
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 257
+        width: 31
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 223d019db2317914d93bcd83d8dfa7cc
+      internalID: 1515737037
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: oppcastle-mod-tiles_48
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 224
+        width: 31
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 717809c68d4a1b44ebf21d4be95599c3
+      internalID: 1398640075
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: oppcastle-mod-tiles_49
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 127
+        width: 32
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a04656e7a5a777e4b9ddfc945b6f843f
+      internalID: 1445280050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: oppcastle-mod-tiles_50
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 127
+        width: 32
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96bee50435d52dc4ebf8009ee85b669c
+      internalID: -1747372994
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: oppcastle-mod-tiles_51
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 96
+        width: 32
+        height: 31
+      alignment: 9
+      pivot: {x: 0.46069884, y: 0.49999925}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d949bc11b5dacfa4aa4db913070ca8a2
+      internalID: -540786016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: oppcastle-mod-tiles_52
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 96
+        width: 32
+        height: 31
+      alignment: 9
+      pivot: {x: 0.46069884, y: 0.49999925}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 57beeca304546884eab5c583f0f240a0
+      internalID: -1203001160
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: oppcastle-mod-tiles_53
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 127
+        width: 31
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93b74228801dcb94e9f6c1ef18dd1426
+      internalID: -1718599766
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: oppcastle-mod-tiles_54
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 96
+        width: 31
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 01fb319103061654b81dabe449ba0d67
+      internalID: 1752539387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: oppcastle-mod-tiles_55
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 288
+        width: 32
+        height: 46
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ce4b61ff7ce4a04985102ef3713d9e9
+      internalID: -2065203395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: oppcastle-mod-tiles_56
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 192
+        width: 33
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f74bdfa64d5e4db4b9888a4ff535c0b4
+      internalID: 1178384191
       vertices: []
       indices: 
       edges: []
@@ -840,8 +1344,32 @@ TextureImporter:
       oppcastle-mod-tiles_30: -169289758
       oppcastle-mod-tiles_31: -1279831269
       oppcastle-mod-tiles_32: -387911575
+      oppcastle-mod-tiles_33: 1931906270
+      oppcastle-mod-tiles_34: 1306999321
+      oppcastle-mod-tiles_35: -1541494947
+      oppcastle-mod-tiles_36: -574479504
+      oppcastle-mod-tiles_37: -628021198
+      oppcastle-mod-tiles_38: 1427141049
+      oppcastle-mod-tiles_39: 1566291227
       oppcastle-mod-tiles_4: -1848194890
+      oppcastle-mod-tiles_40: 1770808349
+      oppcastle-mod-tiles_41: 90377650
+      oppcastle-mod-tiles_42: 359831215
+      oppcastle-mod-tiles_43: 1239633396
+      oppcastle-mod-tiles_44: -1305771713
+      oppcastle-mod-tiles_45: -105860585
+      oppcastle-mod-tiles_46: 1624991946
+      oppcastle-mod-tiles_47: 1515737037
+      oppcastle-mod-tiles_48: 1398640075
+      oppcastle-mod-tiles_49: 1445280050
       oppcastle-mod-tiles_5: 396527356
+      oppcastle-mod-tiles_50: -1747372994
+      oppcastle-mod-tiles_51: -540786016
+      oppcastle-mod-tiles_52: -1203001160
+      oppcastle-mod-tiles_53: -1718599766
+      oppcastle-mod-tiles_54: 1752539387
+      oppcastle-mod-tiles_55: -2065203395
+      oppcastle-mod-tiles_56: 1178384191
       oppcastle-mod-tiles_6: 516510927
       oppcastle-mod-tiles_7: 1821928755
       oppcastle-mod-tiles_8: 92866837
