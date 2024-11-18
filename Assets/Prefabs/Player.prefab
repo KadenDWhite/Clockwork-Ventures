@@ -179,7 +179,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -853144441
-  m_SortingLayer: 23
+  m_SortingLayer: 25
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 2d58622fae7df6f4e830b7f4aa63a728, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -204,7 +204,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 2
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -217,7 +217,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!61 &3071539856110735261
 BoxCollider2D:
@@ -228,7 +228,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 2351765120796592485}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 08380fad53adb3e4298800e84445203e, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -251,7 +251,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.047273576, y: -0.051325053}
+  m_Offset: {x: 0.0085246265, y: -0.051325053}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -262,7 +262,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.40570295, y: 0.6164072}
+  m_Size: {x: 0.23393035, y: 0.6164072}
   m_EdgeRadius: 0
 --- !u!114 &5363477668987795962
 MonoBehaviour:
@@ -276,17 +276,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 694e0736b7cfd984689fa0becb8d49a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 2026184125891649021}
   healthBarImage: {fileID: 0}
   healthText: {fileID: 0}
+  animator: {fileID: 2026184125891649021}
   knockbackManager: {fileID: 7540666685072361774}
-  maxHP: 100
-  currentHP: 0
-  death: {fileID: 0}
-  pauseMenuUI: {fileID: 0}
   playerMovement: {fileID: 0}
   playerAttack: {fileID: 0}
   weaponManager: {fileID: 0}
+  timeText: {fileID: 0}
+  pauseMenuUI: {fileID: 0}
+  maxHP: 100
+  currentHP: 0
   healthSprites:
   - {fileID: -215540722, guid: 156ce70c2077ea8498011158400df30f, type: 3}
   - {fileID: -432062090, guid: 156ce70c2077ea8498011158400df30f, type: 3}
@@ -294,10 +294,10 @@ MonoBehaviour:
   - {fileID: -1386227758, guid: 156ce70c2077ea8498011158400df30f, type: 3}
   - {fileID: -1386227758, guid: 156ce70c2077ea8498011158400df30f, type: 3}
   - {fileID: -249833290, guid: 156ce70c2077ea8498011158400df30f, type: 3}
-  timer: {fileID: 0}
-  timeText: {fileID: 0}
-  deathAnimationClip: {fileID: 0}
+  shield: {fileID: 0}
   backgroundMusicSource: {fileID: 0}
+  death: {fileID: 0}
+  timer: {fileID: 0}
 --- !u!114 &5521599916301718640
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -368,8 +368,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shieldDuration: 10
   shieldCooldown: 5
-  orbitRadius: 1.5
-  orbitSpeed: 100
+  rotationSpeed: 100
   shieldEffect: {fileID: 4128216645900566344}
 --- !u!95 &2026184125891649021
 Animator:
@@ -590,7 +589,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1708520991
-  m_SortingLayer: 24
+  m_SortingLayer: 26
   m_SortingOrder: 0
   m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
@@ -709,7 +708,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1708520991
-  m_SortingLayer: 24
+  m_SortingLayer: 26
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: e079dc6613d687545b1c4f95c7e5bd8b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -793,7 +792,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1708520991
-  m_SortingLayer: 24
+  m_SortingLayer: 26
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: e079dc6613d687545b1c4f95c7e5bd8b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

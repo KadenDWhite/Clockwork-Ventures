@@ -89,14 +89,17 @@ TagManager:
   - name: Coin
     uniqueID: 2866126781
     locked: 0
-  - name: Bubbles
-    uniqueID: 1220708671
-    locked: 0
   - name: Death Zone
     uniqueID: 1050593269
     locked: 0
   - name: Tiles_Decor
     uniqueID: 3230621267
+    locked: 0
+  - name: Platform
+    uniqueID: 34773051
+    locked: 0
+  - name: Bubbles
+    uniqueID: 1220708671
     locked: 0
   - name: Flag
     uniqueID: 2216513575

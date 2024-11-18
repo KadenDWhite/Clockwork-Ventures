@@ -954,9 +954,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 224
-        y: 298
+        y: 300
         width: 32
-        height: 45
+        height: 43
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1306,6 +1306,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: oppcastle-mod-tiles_57
+      rect:
+        serializedVersion: 2
+        x: 227
+        y: 302
+        width: 26
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a8a7b53f3b8e8c4ab59e5409b3c3920
+      internalID: 852424068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -1370,6 +1391,7 @@ TextureImporter:
       oppcastle-mod-tiles_54: 1752539387
       oppcastle-mod-tiles_55: -2065203395
       oppcastle-mod-tiles_56: 1178384191
+      oppcastle-mod-tiles_57: 852424068
       oppcastle-mod-tiles_6: 516510927
       oppcastle-mod-tiles_7: 1821928755
       oppcastle-mod-tiles_8: 92866837
