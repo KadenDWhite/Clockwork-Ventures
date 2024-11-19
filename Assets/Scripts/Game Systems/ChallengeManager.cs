@@ -5,7 +5,6 @@ using TMPro;
 
 public class ChallengeManager : MonoBehaviour
 {
-    public string portalKey = "Portal1"; // Unique identifier for this portal
     public GameObject portal;
 
     public TextMeshProUGUI killText; // Displays enemy kills
@@ -15,24 +14,18 @@ public class ChallengeManager : MonoBehaviour
 
     public int totalEnemies = 1;
     public int totalPickups = 0;
-    public string keyName = "key"; // The name of the key item
 
     private int enemyKilledCount = 0;
     private int pickupCount = 0;
 
     public bool requirePickups = false;
 
-    private Backpack playerBackpack; // Reference to the player's backpack
-
     void Start()
     {
-        // Find and reference the player's Backpack
-        playerBackpack = FindObjectOfType<Backpack>();
-
         if (portal != null)
         {
-            // Set the portal active based on GameManager state
-            portal.SetActive(GameManager.Instance.GetPortalState(portalKey));
+            // Set the portal active based on GameManager state (no portalKey needed anymore)
+            portal.SetActive(true); // Automatically activate the portal, assuming no key condition
         }
 
         UpdateKillText();
@@ -48,15 +41,6 @@ public class ChallengeManager : MonoBehaviour
 
     public void PickupCollected(string itemName)
     {
-        // If the item is the key, we track it specifically
-        if (itemName == keyName)
-        {
-            if (playerBackpack != null && !playerBackpack.HasItem(keyName))
-            {
-                playerBackpack.AddItem(keyName);
-            }
-        }
-
         pickupCount++;
         UpdatePickupText();
         CheckChallengeComplete();
@@ -83,11 +67,8 @@ public class ChallengeManager : MonoBehaviour
         bool enemiesComplete = enemyKilledCount >= totalEnemies;
         bool pickupsComplete = !requirePickups || pickupCount >= totalPickups;
 
-        // Additionally check if the key is in the backpack if it's required for challenge completion
-        bool keyComplete = playerBackpack != null && playerBackpack.HasItem(keyName);
-
         // Challenge is complete if all conditions are met
-        if (enemiesComplete && pickupsComplete && keyComplete)
+        if (enemiesComplete && pickupsComplete)
         {
             OnChallengeComplete();
         }
@@ -113,8 +94,5 @@ public class ChallengeManager : MonoBehaviour
         {
             portal.SetActive(true);
         }
-
-        // Save portal state in GameManager
-        GameManager.Instance.SetPortalState(portalKey, true);
     }
 }

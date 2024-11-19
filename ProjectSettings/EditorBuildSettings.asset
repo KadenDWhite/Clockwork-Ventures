@@ -44,4 +44,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Key Room.unity
     guid: 9e1fb18503431c1418ec48cf310d0c0e
+  - enabled: 1
+    path: Assets/Scenes/Survey.unity
+    guid: b1a3f7dca0b937c4f94ed9d0a27a3457
   m_configObjects: {}

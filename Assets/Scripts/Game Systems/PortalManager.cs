@@ -11,30 +11,13 @@ public class PortalManager : MonoBehaviour
     // Public variable to specify which scene to load
     public string sceneToLoad;
 
-    // Reference to the Backpack script to check if the player has the key
-    private Backpack backpack;
-
-    void Start()
-    {
-        // Find the Backpack object (ensure it is available in the scene)
-        backpack = Backpack.Instance;
-    }
-
     void Update()
     {
-        // If the player is near the portal and presses 'B', check if the portal can be activated
+        // If the player is near the portal and presses 'B', activate the portal
         if (playerInPortal && Input.GetKeyDown(KeyCode.B))
         {
-            if (backpack != null && backpack.HasItem("Key"))
-            {
-                portalActivated = true;
-                Debug.Log("Portal is now active. Press 'E' to enter.");
-            }
-            else
-            {
-                portalActivated = false;
-                Debug.Log("You need the Key to activate the portal.");
-            }
+            portalActivated = true;
+            Debug.Log("Portal is now active. Press 'E' to enter.");
         }
 
         // If the player is in the portal and presses 'E' to enter, load the specified scene

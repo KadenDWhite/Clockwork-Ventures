@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Pickup : MonoBehaviour
 {
-    public ChallengeManager challengeManager;  // Reference to the ChallengeManager
-    public AudioClip pickupSound;  // Sound played when the item is collected
-    public string itemName;  // Name of the item being picked up (e.g., "key")
+    public ChallengeManager challengeManager;
+    public AudioClip pickupSound;
+    public string itemName;
 
-    private AudioSource audioSource;  // Audio source to play the sound
+    private AudioSource audioSource;
     private bool isCollected = false;  // To prevent multiple pickups
 
     private void Start()
@@ -31,13 +31,6 @@ public class Pickup : MonoBehaviour
         if (other.CompareTag("Player") && !isCollected)
         {
             isCollected = true;
-
-            // Add the item to the player's backpack (e.g., key)
-            Backpack backpack = other.GetComponent<Backpack>();
-            if (backpack != null)
-            {
-                backpack.AddItem(itemName);  // Add the item to the backpack
-            }
 
             // Notify the ChallengeManager that the item was picked up
             if (challengeManager != null)

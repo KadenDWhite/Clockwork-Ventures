@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        deathScreen.SetActive(false);
+        deathScreen?.SetActive(false);
 
         // Load saved data (key state and portal states)
         LoadGameState();
@@ -38,9 +38,9 @@ public class GameManager : MonoBehaviour
 
     public void OnPlayerDeath()
     {
-        deathScreen.SetActive(true);
-        typewriterEffect.Run();
-        typewriterEffect2.Run();
+        deathScreen?.SetActive(true);
+        typewriterEffect?.Run();
+        typewriterEffect2?.Run();
     }
 
     // Set the state of a portal
@@ -62,13 +62,14 @@ public class GameManager : MonoBehaviour
         return portalStates.ContainsKey(portalKey) && portalStates[portalKey];
     }
 
-    // Set and get the key state
+    // Set the key state
     public void SetKeyState(bool hasTheKey)
     {
         hasKey = hasTheKey;
         SaveGameState(); // Save the key state when it's changed
     }
 
+    // Get the key state
     public bool GetKeyState()
     {
         return hasKey;
@@ -99,5 +100,12 @@ public class GameManager : MonoBehaviour
 
         // Load key state
         hasKey = PlayerPrefs.GetInt("HasKey", 0) == 1;
+    }
+
+    // Reset states specific to the current scene
+    public void ResetSceneState()
+    {
+        portalStates.Clear(); // Clear portal states if not needed across scenes
+        hasKey = false;       // Reset key state (optional, depending on design)
     }
 }
