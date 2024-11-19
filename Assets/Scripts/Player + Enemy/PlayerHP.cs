@@ -71,14 +71,14 @@ public class PlayerHP : MonoBehaviour
         if (currentHP <= 0) Die();
     }
 
-    void UpdateHealthBar()
+    public void UpdateHealthBar()
     {
         float healthPercentage = (float)currentHP / maxHP;
         int spriteIndex = Mathf.Clamp((int)(healthPercentage * healthSprites.Length), 0, healthSprites.Length - 1);
         healthBarImage.sprite = healthSprites[spriteIndex];
     }
 
-    void UpdateHealthText()
+    public void UpdateHealthText()
     {
         if (healthText != null)
         {
