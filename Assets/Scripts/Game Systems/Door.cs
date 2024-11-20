@@ -5,39 +5,41 @@ using TMPro;
 
 public class Door : MonoBehaviour
 {
-    [Tooltip("The required item to open the door. Leave empty if no item is required.")]
-    [SerializeField] private string requiredItem = ""; // The required item to open the door (empty for no item requirement)
+    [Tooltip("The ChallengeManager responsible for tracking key or challenge state.")]
+    [SerializeField] private ChallengeManager challengeManager;
 
     [Tooltip("The closed door sprite.")]
-    [SerializeField] private Sprite closedDoorSprite; // The closed door sprite
+    [SerializeField] private Sprite closedDoorSprite;
 
     [Tooltip("The open door sprite.")]
-    [SerializeField] private Sprite openDoorSprite;   // The open door sprite
+    [SerializeField] private Sprite openDoorSprite;
 
     [Tooltip("The scene to load when the door is opened.")]
-    [SerializeField] private string sceneToLoad;      // The scene to load when the door is opened
+    [SerializeField] private string sceneToLoad;
 
     [Tooltip("Reference to the UI text to show interaction message.")]
-    [SerializeField] private TextMeshProUGUI interactionText; // Reference to the UI text to show interaction message
+    [SerializeField] private TextMeshProUGUI interactionText;
 
     [Tooltip("Duration to display the interaction message.")]
-    [SerializeField] private float messageDuration = 2f; // Duration to display the interaction message
+    [SerializeField] private float messageDuration = 2f;
 
-    private bool playerInTrigger = false; 
+    [Tooltip("The minimum number of enemies killed to unlock the door (set to 0 to ignore).")]
+    [SerializeField] private int requiredEnemyKills = 0;
+
+    private bool playerInTrigger = false;
     private SpriteRenderer spriteRenderer;
 
     void Start()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>(); 
+        spriteRenderer = GetComponent<SpriteRenderer>();
         UpdateDoorSprite();
     }
 
     void Update()
     {
-        // Check if the player is in range and presses 'E' to interact with the door
         if (playerInTrigger && Input.GetKeyDown(KeyCode.E))
         {
-            TryToOpenDoor(); 
+            TryToOpenDoor();
         }
 
         UpdateDoorSprite();
@@ -45,7 +47,6 @@ public class Door : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // Trigger when the player enters the door's trigger zone
         if (other.CompareTag("Player"))
         {
             playerInTrigger = true;
@@ -55,39 +56,33 @@ public class Door : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        // Trigger when the player exits the door's trigger zone
         if (other.CompareTag("Player"))
         {
             playerInTrigger = false;
-            HideMessage(); 
+            HideMessage();
         }
     }
 
     private void TryToOpenDoor()
     {
-        if (!string.IsNullOrEmpty(requiredItem))
+        if (challengeManager != null)
         {
-            // Check if the player has the required item (adapted to use the existing key)
-            if (GameManager.Instance.GetKeyState())
+            bool enemiesConditionMet = challengeManager.totalEnemies > 0 && challengeManager.enemyKilledCount >= requiredEnemyKills;
+            bool pickupsConditionMet = challengeManager.requirePickups && challengeManager.totalPickups > 0 && challengeManager.totalPickups == challengeManager.pickupCount;
+
+            if (enemiesConditionMet || pickupsConditionMet)
             {
-                GameManager.Instance.SetKeyState(false); // Consume the key
-                ShowMessage($"{requiredItem} used to open the door!"); // Display message confirming item use
-                LoadScene(); // Load the scene upon key use
+                ShowMessage("Conditions met! Door unlocked.");
+                LoadScene();
             }
             else
             {
-                ShowMessage($"You need a {requiredItem} to open this door.");
+                ShowMessage($"Kill {requiredEnemyKills - challengeManager.enemyKilledCount} more enemies or collect key(s) to open this door.");
             }
-        }
-        else if (GameManager.Instance.GetKeyState()) // If no item is required, use the key directly
-        {
-            GameManager.Instance.SetKeyState(false); // Consume the key
-            ShowMessage("Key used to open the door!"); // Display key used message
-            LoadScene(); // Load the scene upon key use
         }
         else
         {
-            ShowMessage("You need a key to open this door.");
+            ShowMessage("Challenge Manager not assigned.");
         }
     }
 
@@ -95,25 +90,30 @@ public class Door : MonoBehaviour
     {
         if (!string.IsNullOrEmpty(sceneToLoad))
         {
-            GameManager.Instance.SaveGameState();
             SceneManager.LoadScene(sceneToLoad);
         }
     }
 
     private void UpdateDoorSprite()
     {
-        if (GameManager.Instance.GetKeyState())
+        if (challengeManager != null)
         {
-            if (spriteRenderer.sprite != openDoorSprite)
+            bool enemiesConditionMet = challengeManager.totalEnemies > 0 && challengeManager.enemyKilledCount >= requiredEnemyKills;
+            bool pickupsConditionMet = challengeManager.requirePickups && challengeManager.totalPickups > 0 && challengeManager.totalPickups == challengeManager.pickupCount;
+
+            if (enemiesConditionMet || pickupsConditionMet)
             {
-                spriteRenderer.sprite = openDoorSprite;
+                if (spriteRenderer.sprite != openDoorSprite)
+                {
+                    spriteRenderer.sprite = openDoorSprite;
+                }
             }
-        }
-        else
-        {
-            if (spriteRenderer.sprite != closedDoorSprite)
+            else
             {
-                spriteRenderer.sprite = closedDoorSprite;
+                if (spriteRenderer.sprite != closedDoorSprite)
+                {
+                    spriteRenderer.sprite = closedDoorSprite;
+                }
             }
         }
     }
@@ -132,7 +132,7 @@ public class Door : MonoBehaviour
     {
         if (interactionText != null)
         {
-            interactionText.gameObject.SetActive(false); 
+            interactionText.gameObject.SetActive(false);
         }
     }
 

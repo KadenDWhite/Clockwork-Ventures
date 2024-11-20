@@ -151,8 +151,8 @@ Transform:
   m_GameObject: {fileID: 16023530}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.39608, y: 16.469, z: 0}
-  m_LocalScale: {x: 0.17877282, y: -8.38983, z: 0.14263}
+  m_LocalPosition: {x: 0.424369, y: 14.754, z: 0}
+  m_LocalScale: {x: 0.122194804, y: -4.9583893, z: 0.14263}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1657277735}
@@ -254,7 +254,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1050593269
-  m_SortingLayer: 16
+  m_SortingLayer: 14
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
@@ -429,6 +429,10 @@ PrefabInstance:
     - target: {fileID: 2302725359390295151, guid: ebda6754a0a0f7541a96f3c1666b9705, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2302725359390295151, guid: ebda6754a0a0f7541a96f3c1666b9705, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 3473125147232940594, guid: ebda6754a0a0f7541a96f3c1666b9705, type: 3}
       propertyPath: deathAnimName
@@ -747,7 +751,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2232779251235147686, guid: d81ca46da6c1bcf4fb5c1ac9527f09fb, type: 3}
       propertyPath: m_LocalScale.y
-      value: -3.0712202
+      value: -2.3924804
       objectReference: {fileID: 0}
     - target: {fileID: 2232779251235147686, guid: d81ca46da6c1bcf4fb5c1ac9527f09fb, type: 3}
       propertyPath: m_LocalScale.z
@@ -759,7 +763,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2232779251235147686, guid: d81ca46da6c1bcf4fb5c1ac9527f09fb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 10.1
+      value: 9.76
       objectReference: {fileID: 0}
     - target: {fileID: 2232779251235147686, guid: d81ca46da6c1bcf4fb5c1ac9527f09fb, type: 3}
       propertyPath: m_LocalPosition.z
@@ -877,6 +881,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8482233469448057142, guid: 2e564fe57e3a45e4b918484772a23cf5, type: 3}
   m_PrefabInstance: {fileID: 2105430322}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &322400053 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4239237783023891605, guid: 80d129352f5da7742b730b970b265312, type: 3}
+  m_PrefabInstance: {fileID: 1813029657}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &345931334
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2878,7 +2893,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2232779251235147686, guid: d81ca46da6c1bcf4fb5c1ac9527f09fb, type: 3}
       propertyPath: m_LocalScale.y
-      value: -3.0712202
+      value: -2.4569762
       objectReference: {fileID: 0}
     - target: {fileID: 2232779251235147686, guid: d81ca46da6c1bcf4fb5c1ac9527f09fb, type: 3}
       propertyPath: m_LocalScale.z
@@ -2890,7 +2905,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2232779251235147686, guid: d81ca46da6c1bcf4fb5c1ac9527f09fb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 23
+      value: 22.693
       objectReference: {fileID: 0}
     - target: {fileID: 2232779251235147686, guid: d81ca46da6c1bcf4fb5c1ac9527f09fb, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3713,7 +3728,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1050593269
-  m_SortingLayer: 16
+  m_SortingLayer: 14
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
@@ -3735,8 +3750,8 @@ Transform:
   m_GameObject: {fileID: 1178074941}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -38.7675, y: -24.7, z: 0}
-  m_LocalScale: {x: 37.56681, y: 0.07633892, z: 1}
+  m_LocalPosition: {x: -46.2265, y: -24.7, z: 0}
+  m_LocalScale: {x: 52.48459, y: 0.07633892, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 16023531}
@@ -3764,7 +3779,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2232779251235147686, guid: d81ca46da6c1bcf4fb5c1ac9527f09fb, type: 3}
       propertyPath: m_LocalScale.y
-      value: -3.0712202
+      value: -2.4569762
       objectReference: {fileID: 0}
     - target: {fileID: 2232779251235147686, guid: d81ca46da6c1bcf4fb5c1ac9527f09fb, type: 3}
       propertyPath: m_LocalScale.z
@@ -3776,7 +3791,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2232779251235147686, guid: d81ca46da6c1bcf4fb5c1ac9527f09fb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 14.7
+      value: 14.393
       objectReference: {fileID: 0}
     - target: {fileID: 2232779251235147686, guid: d81ca46da6c1bcf4fb5c1ac9527f09fb, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4124,7 +4139,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1220708671
-  m_SortingLayer: 15
+  m_SortingLayer: 19
   m_SortingOrder: 0
   m_RenderMode: 3
   m_MeshDistribution: 0
@@ -9047,6 +9062,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2302725359390295151, guid: ebda6754a0a0f7541a96f3c1666b9705, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 3473125147232940594, guid: ebda6754a0a0f7541a96f3c1666b9705, type: 3}
       propertyPath: deathAnimName
       value: Goblin(Death)
@@ -9813,7 +9832,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1064346029
-  m_SortingLayer: 17
+  m_SortingLayer: 15
   m_SortingOrder: 1
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 1.78125, y: 3, z: 0}
@@ -10015,7 +10034,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2232779251235147686, guid: d81ca46da6c1bcf4fb5c1ac9527f09fb, type: 3}
       propertyPath: m_LocalScale.y
-      value: -3.362986
+      value: -2.7475595
       objectReference: {fileID: 0}
     - target: {fileID: 2232779251235147686, guid: d81ca46da6c1bcf4fb5c1ac9527f09fb, type: 3}
       propertyPath: m_LocalScale.z
@@ -10027,7 +10046,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2232779251235147686, guid: d81ca46da6c1bcf4fb5c1ac9527f09fb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 18.9
+      value: 18.593
       objectReference: {fileID: 0}
     - target: {fileID: 2232779251235147686, guid: d81ca46da6c1bcf4fb5c1ac9527f09fb, type: 3}
       propertyPath: m_LocalPosition.z
@@ -10294,7 +10313,7 @@ PrefabInstance:
       objectReference: {fileID: 1715773399}
     - target: {fileID: 5521599916301718640, guid: 01f41760f7ce1694780289e3e13ce95e, type: 3}
       propertyPath: jump
-      value: 50
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 5521599916301718640, guid: 01f41760f7ce1694780289e3e13ce95e, type: 3}
       propertyPath: runSpeed
@@ -11071,6 +11090,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 449706266402373210, guid: e7baf4aaba6f96b4fa461fa534c043e0, type: 3}
+      propertyPath: sceneToLoad
+      value: Platform
+      objectReference: {fileID: 0}
+    - target: {fileID: 449706266402373210, guid: e7baf4aaba6f96b4fa461fa534c043e0, type: 3}
+      propertyPath: openDoorSprite
+      value: 
+      objectReference: {fileID: 901247730, guid: 632003fdeadea944c846fa1738a2b262, type: 3}
+    - target: {fileID: 449706266402373210, guid: e7baf4aaba6f96b4fa461fa534c043e0, type: 3}
+      propertyPath: interactionText
+      value: 
+      objectReference: {fileID: 322400053}
+    - target: {fileID: 449706266402373210, guid: e7baf4aaba6f96b4fa461fa534c043e0, type: 3}
+      propertyPath: challengeManager
+      value: 
+      objectReference: {fileID: 186866475}
+    - target: {fileID: 449706266402373210, guid: e7baf4aaba6f96b4fa461fa534c043e0, type: 3}
+      propertyPath: closedDoorSprite
+      value: 
+      objectReference: {fileID: 1697400397, guid: 632003fdeadea944c846fa1738a2b262, type: 3}
     - target: {fileID: 1037333291963808890, guid: e7baf4aaba6f96b4fa461fa534c043e0, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.8624518
@@ -11130,7 +11169,7 @@ PrefabInstance:
     - target: {fileID: 1898214682403293843, guid: e7baf4aaba6f96b4fa461fa534c043e0, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -1541452303, guid: 632003fdeadea944c846fa1738a2b262, type: 3}
+      objectReference: {fileID: 1697400397, guid: 632003fdeadea944c846fa1738a2b262, type: 3}
     - target: {fileID: 6726483607620596839, guid: e7baf4aaba6f96b4fa461fa534c043e0, type: 3}
       propertyPath: m_Name
       value: Portal

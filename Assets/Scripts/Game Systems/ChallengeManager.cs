@@ -15,8 +15,8 @@ public class ChallengeManager : MonoBehaviour
     public int totalEnemies = 1;
     public int totalPickups = 0;
 
-    private int enemyKilledCount = 0;
-    private int pickupCount = 0;
+    public int enemyKilledCount = 0;
+    public int pickupCount = 0;
 
     public bool requirePickups = false;
 
@@ -50,11 +50,11 @@ public class ChallengeManager : MonoBehaviour
     {
         if (killText != null)
         {
-            killText.text = $"{enemyKilledCount}/{totalEnemies} Enemies Killed";
+            killText.text = $"{enemyKilledCount}/{totalEnemies} Killed";
         }
     }
 
-    void UpdatePickupText()
+    public void UpdatePickupText()
     {
         if (pickupText != null)
         {
@@ -62,7 +62,7 @@ public class ChallengeManager : MonoBehaviour
         }
     }
 
-    void CheckChallengeComplete()
+    public void CheckChallengeComplete()
     {
         bool enemiesComplete = enemyKilledCount >= totalEnemies;
         bool pickupsComplete = !requirePickups || pickupCount >= totalPickups;
@@ -74,7 +74,7 @@ public class ChallengeManager : MonoBehaviour
         }
     }
 
-    void OnChallengeComplete()
+    public void OnChallengeComplete()
     {
         ActivatePortal();
         if (timer != null)
@@ -88,7 +88,7 @@ public class ChallengeManager : MonoBehaviour
         }
     }
 
-    void ActivatePortal()
+    public void ActivatePortal()
     {
         if (portal != null)
         {

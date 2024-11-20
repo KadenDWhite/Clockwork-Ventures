@@ -254,7 +254,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1050593269
-  m_SortingLayer: 16
+  m_SortingLayer: 14
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
@@ -750,6 +750,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2302725359390295151, guid: ebda6754a0a0f7541a96f3c1666b9705, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 3473125147232940594, guid: ebda6754a0a0f7541a96f3c1666b9705, type: 3}
       propertyPath: maxHP
       value: 20
@@ -761,6 +765,10 @@ PrefabInstance:
     - target: {fileID: 3473125147232940594, guid: ebda6754a0a0f7541a96f3c1666b9705, type: 3}
       propertyPath: challengeManager
       value: 
+      objectReference: {fileID: 186866475}
+    - target: {fileID: 4993908460348934248, guid: ebda6754a0a0f7541a96f3c1666b9705, type: 3}
+      propertyPath: delay
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4993908460348934248, guid: ebda6754a0a0f7541a96f3c1666b9705, type: 3}
       propertyPath: strength
@@ -2889,6 +2897,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3107037859927457310, guid: 80d129352f5da7742b730b970b265312, type: 3}
   m_PrefabInstance: {fileID: 1813029657}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &684308900 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4239237783023891605, guid: 80d129352f5da7742b730b970b265312, type: 3}
+  m_PrefabInstance: {fileID: 1813029657}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &801813904
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3592,7 +3611,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1050593269
-  m_SortingLayer: 16
+  m_SortingLayer: 14
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
@@ -3852,7 +3871,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1220708671
-  m_SortingLayer: 15
+  m_SortingLayer: 19
   m_SortingOrder: 0
   m_RenderMode: 3
   m_MeshDistribution: 0
@@ -9028,6 +9047,14 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 3022016470260550782, guid: 80d129352f5da7742b730b970b265312, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -26
+      objectReference: {fileID: 0}
+    - target: {fileID: 3022016470260550782, guid: 80d129352f5da7742b730b970b265312, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 314
+      objectReference: {fileID: 0}
     - target: {fileID: 3479293598066772333, guid: 80d129352f5da7742b730b970b265312, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -9059,6 +9086,10 @@ PrefabInstance:
     - target: {fileID: 4629874907753121814, guid: 80d129352f5da7742b730b970b265312, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
       value: set_enabled
+      objectReference: {fileID: 0}
+    - target: {fileID: 4775387452439143875, guid: 80d129352f5da7742b730b970b265312, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5423665595096510464, guid: 80d129352f5da7742b730b970b265312, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -9459,7 +9490,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1064346029
-  m_SortingLayer: 17
+  m_SortingLayer: 15
   m_SortingOrder: 1
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 1.78125, y: 3, z: 0}
@@ -9909,7 +9940,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7540666685072361774, guid: 01f41760f7ce1694780289e3e13ce95e, type: 3}
       propertyPath: delay
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7540666685072361774, guid: 01f41760f7ce1694780289e3e13ce95e, type: 3}
       propertyPath: strength
@@ -10508,6 +10539,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1813029661}
     m_Modifications:
+    - target: {fileID: 694890157169196900, guid: 4693bb5e1e7df7a47a5b68ba289ef3e6, type: 3}
+      propertyPath: m_text
+      value: 0/2 killed
+      objectReference: {fileID: 0}
+    - target: {fileID: 2395256092064290499, guid: 4693bb5e1e7df7a47a5b68ba289ef3e6, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 2454699472542429605, guid: 4693bb5e1e7df7a47a5b68ba289ef3e6, type: 3}
+      propertyPath: m_text
+      value: 'Hob + goblin:'
+      objectReference: {fileID: 0}
     - target: {fileID: 3564588106500477178, guid: 4693bb5e1e7df7a47a5b68ba289ef3e6, type: 3}
       propertyPath: m_Name
       value: Challenge
@@ -10604,6 +10647,10 @@ PrefabInstance:
       propertyPath: portal
       value: 
       objectReference: {fileID: 5066255391986589165}
+    - target: {fileID: 7411671637733003068, guid: 4693bb5e1e7df7a47a5b68ba289ef3e6, type: 3}
+      propertyPath: totalEnemies
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10617,6 +10664,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 449706266402373210, guid: e7baf4aaba6f96b4fa461fa534c043e0, type: 3}
+      propertyPath: sceneToLoad
+      value: Platform (Easy)
+      objectReference: {fileID: 0}
+    - target: {fileID: 449706266402373210, guid: e7baf4aaba6f96b4fa461fa534c043e0, type: 3}
+      propertyPath: openDoorSprite
+      value: 
+      objectReference: {fileID: -1541452303, guid: 632003fdeadea944c846fa1738a2b262, type: 3}
+    - target: {fileID: 449706266402373210, guid: e7baf4aaba6f96b4fa461fa534c043e0, type: 3}
+      propertyPath: interactionText
+      value: 
+      objectReference: {fileID: 684308900}
+    - target: {fileID: 449706266402373210, guid: e7baf4aaba6f96b4fa461fa534c043e0, type: 3}
+      propertyPath: challengeManager
+      value: 
+      objectReference: {fileID: 186866475}
+    - target: {fileID: 449706266402373210, guid: e7baf4aaba6f96b4fa461fa534c043e0, type: 3}
+      propertyPath: closedDoorSprite
+      value: 
+      objectReference: {fileID: -1211092964, guid: 632003fdeadea944c846fa1738a2b262, type: 3}
+    - target: {fileID: 449706266402373210, guid: e7baf4aaba6f96b4fa461fa534c043e0, type: 3}
+      propertyPath: requiredEnemyKills
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1037333291963808890, guid: e7baf4aaba6f96b4fa461fa534c043e0, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.8624518
@@ -10676,7 +10747,7 @@ PrefabInstance:
     - target: {fileID: 1898214682403293843, guid: e7baf4aaba6f96b4fa461fa534c043e0, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -1541452303, guid: 632003fdeadea944c846fa1738a2b262, type: 3}
+      objectReference: {fileID: -1211092964, guid: 632003fdeadea944c846fa1738a2b262, type: 3}
     - target: {fileID: 6726483607620596839, guid: e7baf4aaba6f96b4fa461fa534c043e0, type: 3}
       propertyPath: m_Name
       value: Portal

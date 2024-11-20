@@ -25,7 +25,6 @@ public class PlayerHP : MonoBehaviour
     public Shield shield;
 
     [Header("Audio and Effects")]
-    public AudioSource backgroundMusicSource;
     public GameObject death;
 
     [Header("Gameplay References")]
@@ -33,6 +32,10 @@ public class PlayerHP : MonoBehaviour
     private GameManager gameManager;
 
     private bool isDead = false;
+
+    // Event to notify AudioManager about player death
+    public delegate void PlayerDeathAction();
+    public event PlayerDeathAction OnPlayerDeath;
 
     void Start()
     {
@@ -95,7 +98,6 @@ public class PlayerHP : MonoBehaviour
 
         animator.SetBool("IsDead", true);
         animator.CrossFade("Death", 0.1f);
-        backgroundMusicSource?.Stop();
 
         DisablePlayerComponents();
 
@@ -103,6 +105,9 @@ public class PlayerHP : MonoBehaviour
         {
             death.SetActive(true);
         }
+
+        // Trigger death event
+        OnPlayerDeath?.Invoke();
 
         StartCoroutine(HandleDeath());
     }
