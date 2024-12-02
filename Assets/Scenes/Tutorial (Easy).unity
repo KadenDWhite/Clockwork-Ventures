@@ -4704,7 +4704,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1688518367430588543, guid: ebda6754a0a0f7541a96f3c1666b9705, type: 3}
       propertyPath: attackDelay
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1688518367430588543, guid: ebda6754a0a0f7541a96f3c1666b9705, type: 3}
       propertyPath: attackDamage
@@ -4736,7 +4736,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4993908460348934248, guid: ebda6754a0a0f7541a96f3c1666b9705, type: 3}
       propertyPath: strength
-      value: 6
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4993908460348934248, guid: ebda6754a0a0f7541a96f3c1666b9705, type: 3}
       propertyPath: OnDone.m_PersistentCalls.m_Calls.Array.size
@@ -4944,6 +4944,10 @@ PrefabInstance:
     - target: {fileID: 86950212193509824, guid: 80d129352f5da7742b730b970b265312, type: 3}
       propertyPath: m_Color.r
       value: 0.90588236
+      objectReference: {fileID: 0}
+    - target: {fileID: 390847406708896851, guid: 80d129352f5da7742b730b970b265312, type: 3}
+      propertyPath: m_text
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 771861958028633160, guid: 80d129352f5da7742b730b970b265312, type: 3}
       propertyPath: m_SizeDelta.y
@@ -5473,6 +5477,10 @@ PrefabInstance:
       propertyPath: death
       value: 
       objectReference: {fileID: 1791681672}
+    - target: {fileID: 5363477668987795962, guid: 01f41760f7ce1694780289e3e13ce95e, type: 3}
+      propertyPath: maxHP
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 5363477668987795962, guid: 01f41760f7ce1694780289e3e13ce95e, type: 3}
       propertyPath: shield
       value: 

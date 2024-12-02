@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Yes
   m_EditorClassIdentifier: 
   dialogue:
-  - You said Yes? Marvelous!
+  - You said yes? Marvelous!
   reponses: []

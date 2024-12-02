@@ -23,6 +23,11 @@ MonoBehaviour:
 
     I gave him a dull kitchen
     knife to protect himself.'
+  - 'Once you defeat him, it''ll open up that portal.
+
+
+    Enter through it, and
+    you''ll be at the next destination.'
   - Now go on, kill that weakling.
   reponses:
   - responseText: Okay

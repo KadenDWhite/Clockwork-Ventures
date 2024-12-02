@@ -18,20 +18,23 @@ MonoBehaviour:
 
     My name is Gobi, I welcome thee to my beloved
     post!'
-  - Currently this is just a demo, and you're at the tutorial for this game.
-  - I'm not here to explain your story, that's for you to learn throughout the later
-    game.
+  - You're at the tutorial for this game.
   - But you must be wondering why I'm here?
-  - Well, this is where I'm gonna teach you the basics!
-  - "For starters, you already know how to move around using WSAD. \n\nPressing space
+  - Well, I'm here to teach you the basics!
+  - "For starters, you already know how to move around using WSAD. \n\nPressing SPACE
     will let ya jump."
-  - "By pressing Q, you'll draw/sheathe your weapon. \n\nClick for combat."
+  - "By pressing Q, you'll draw/sheathe your weapon. \n\nCLICK for combat."
   - 'Oh, that''s right I forgot! You also should have a shield.
 
 
     By pressing
     F it''ll activate!'
-  - You'll have a 10 second limit, and a 5 second delay.
+  - You'll have 10 seconds of protection, and a 5 second cooldown to reuse it.
+  - 'You''ll face a few challenges before you reach the castle dungeon.
+
+
+    Beware
+    the enemies ahead.'
   - 'Now that you''ve learned all of this...
 
 
