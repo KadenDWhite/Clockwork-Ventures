@@ -468,7 +468,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8479649608210448790, guid: ebda6754a0a0f7541a96f3c1666b9705, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -15.65
+      value: -11
       objectReference: {fileID: 0}
     - target: {fileID: 8479649608210448790, guid: ebda6754a0a0f7541a96f3c1666b9705, type: 3}
       propertyPath: m_LocalPosition.y
@@ -9361,22 +9361,6 @@ PrefabInstance:
     - target: {fileID: 2665209175736336329, guid: 80d129352f5da7742b730b970b265312, type: 3}
       propertyPath: m_Name
       value: Canvas
-      objectReference: {fileID: 0}
-    - target: {fileID: 2827169821035897095, guid: 80d129352f5da7742b730b970b265312, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 338.6302
-      objectReference: {fileID: 0}
-    - target: {fileID: 2827169821035897095, guid: 80d129352f5da7742b730b970b265312, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 44.5848
-      objectReference: {fileID: 0}
-    - target: {fileID: 2827169821035897095, guid: 80d129352f5da7742b730b970b265312, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -18
-      objectReference: {fileID: 0}
-    - target: {fileID: 2827169821035897095, guid: 80d129352f5da7742b730b970b265312, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 173
       objectReference: {fileID: 0}
     - target: {fileID: 2850476982003474331, guid: 80d129352f5da7742b730b970b265312, type: 3}
       propertyPath: m_IsActive
