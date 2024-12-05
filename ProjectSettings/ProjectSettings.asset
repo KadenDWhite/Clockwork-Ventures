@@ -44,7 +44,7 @@ PlayerSettings:
     duration: 4
   - logo: {fileID: 10404, guid: 0000000000000000f000000000000000, type: 0}
     duration: 2
-  m_VirtualRealitySplashScreen: {fileID: 2800000, guid: 99f91978792387b44aa041a37bea762d, type: 3}
+  m_VirtualRealitySplashScreen: {fileID: 2800000, guid: 08b7ff82a88290d4e816d22ded427fbe, type: 3}
   m_HolographicTrackingLossScreen: {fileID: 0}
   defaultScreenWidth: 1920
   defaultScreenHeight: 1080
@@ -158,7 +158,7 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Standalone: com.DefaultCompany.ClockWork-Ventures
+    Standalone: com.CrunkHouse-Studios.ClockWork-Ventures
   buildNumber:
     Standalone: 0
     VisionOS: 0
